@@ -1,1 +1,23 @@
-<p>header works!</p>
+<div class="headerbox">
+    <img (click)="toggle = !toggle" class="title-icon" src='assets/title-icon.png'>
+    <span class="main-title" (click)="this.router.navigate(['/builder'])"><b>L'Atelier De Nova</b></span>
+</div>
+<div class="grd"></div>
+<div (click)="toggle = !toggle" [ngClass]="{'hidden-sidebox-right': !toggle}" class="sidebox-right"></div>
+<div [ngClass]="{'hidden-sidebox': !toggle}" class="sidebox">
+    <div class="section sectionA"><span>A</span>telier</div>
+    <div (click)="this.router.navigate(['/builder'])" class="side-option sideA">Création de perso</div>
+    <div class="section sectionB"><span>O</span>rigine</div>
+    <div (click)="this.router.navigate(['/ancestries'])" class="side-option sideB">Ascendances/Héritages</div>
+    <div (click)="this.router.navigate(['/feats/ancestries'])" class="side-option sideB">Dons d'Ascendances</div>
+    <div (click)="this.router.navigate(['/backgrounds'])" class="side-option sideB">Historiques</div>
+    <div class="section sectionC"><span>A</span>ptitudes</div>
+    <div (click)="this.router.navigate(['/classes'])" class="side-option sideC">Classes</div>
+    <div (click)="this.router.navigate(['/feats/classes'])" class="side-option sideC">Dons de Classe</div>
+    <div (click)="this.router.navigate(['/spells'])" class="side-option sideC">Sorts</div>    
+    <div class="section sectionD"><span>E</span>quippement</div>
+    <div (click)="this.router.navigate(['/weapons'])" class="side-option sideD">Armes de départ</div>
+    <div (click)="this.router.navigate(['/armors'])" class="side-option sideD">Armures</div>
+    <div (click)="this.router.navigate(['/equips'])" class="side-option sideD">Equipements divers</div>
+
+</div>

@@ -1,0 +1,117 @@
+<div class="background">
+    <div class="filterbox">
+        <input [(ngModel)]="textFilter" (keyup.enter)="dynamicFilter()" class="input" placeholder="Filtrer..." type="text"/>
+        <img (click)="dynamicFilter()" class="filter-icon" src='assets/filter-icon.png'>
+        <button (click)="filterCac = !filterCac; dynamicFilter()" [ngClass]="{'off': !filterCac}" class="toggle">CàC</button>
+        <button (click)="filterDist = !filterDist; dynamicFilter()" [ngClass]="{'off': !filterDist}" class="toggle">Distance</button>
+        <div style="width: 10px;"></div>
+        <button (click)="filterSimp = !filterSimp; dynamicFilter()" [ngClass]="{'off': !filterSimp}" class="toggle">Simples</button>
+        <button (click)="filterMart = !filterMart; dynamicFilter()" [ngClass]="{'off': !filterMart}" class="toggle">De guerre</button>
+        <button (click)="filterAdv = !filterAdv; dynamicFilter()" [ngClass]="{'off': !filterAdv}" class="toggle">Avancées</button>
+    </div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>
+                    <b (click)="changeSortMode('nom')">Nom </b>
+                    <b *ngIf="sortMode == 'nom_asc'">↑</b>
+                    <b *ngIf="sortMode == 'nom_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('type')">Type </b>
+                    <b *ngIf="sortMode == 'type_asc'">↑</b>
+                    <b *ngIf="sortMode == 'type_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('degats')">Dégâts </b>
+                    <b *ngIf="sortMode == 'degats_asc'">↑</b>
+                    <b *ngIf="sortMode == 'degats_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('mains')">Mains </b>
+                    <b *ngIf="sortMode == 'mains_asc'">↑</b>
+                    <b *ngIf="sortMode == 'mains_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('poids')">Poids </b>
+                    <b *ngIf="sortMode == 'poids_asc'">↑</b>
+                    <b *ngIf="sortMode == 'poids_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('groupe')">Groupe </b>
+                    <b *ngIf="sortMode == 'groupe_asc'">↑</b>
+                    <b *ngIf="sortMode == 'groupe_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('categorie')">Catégorie </b>
+                    <b *ngIf="sortMode == 'categorie_asc'">↑</b>
+                    <b *ngIf="sortMode == 'categorie_desc'">↓</b>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [ngClass]="{'hidden': object['hidden'], 'data-table-even': object['grey']} "*ngFor="let object of data">
+                <td>   
+                    <div class="tooltip">
+                        <div class="name">{{object["translations"]["fr"]["name"] }}</div>
+                        <span class="tooltiptext" 
+                            [innerHTML]="object['translations']['fr']['description']"></span>
+                    </div>
+                    <br>
+                    <div class="trait-row">
+                        <b class="price" *ngIf="object['price']['gp'] != null">{{object['price']['gp']}} po </b>
+                        <b class="price" *ngIf="object['price']['sp'] != null">{{object['price']['sp']}} pa </b>
+                        <b class="price" *ngIf="object['price']['cp'] != null">{{object['price']['cp']}} pc </b>
+                        <div class="trait trait-alt2" (click)="goToLink('https://pf2e.pathfinder-fr.org/equipment/'+object['_id'])">
+                            <img (click)="dynamicFilter()" style="width: 10px; margin-top: 0.5px; margin-bottom: -0.5px;" src='assets/link.png'>
+                        </div>
+                        <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'uncommon'">Peu Commun</div>
+                        <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'rare'">Rare</div>
+                        <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'unique'">Unique</div>
+                        <div class="trait tooltip" *ngFor="let trait of object['traits']['value']">
+                            {{trait["translations"]["fr"]["name"]}}
+                            <span *ngIf="trait['translations']['fr']['description'] != undefined" 
+                                class="tooltiptext" 
+                                [innerHTML]="'<p><b>' + trait['translations']['fr']['name'] + ':</b> ' + trait['translations']['fr']['description'] + '</p>'"></span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="object['range'] == null">Corps à Corps</div>
+                    <div *ngIf="object['range'] != null">Distance (<b>{{object['range']/5}}◇</b>)</div>
+                </td>
+                <td>
+                    <div>
+                        <b class="damage-dice">{{object["damage"]["dice"]}}{{object["damage"]["die"]}} </b>
+                        <b class="tooltip">
+                            <img class="damage-type-icon" src='{{"assets/damageTypes/" + object["damage"]["damageType"] + ".png"}}'>
+                            <span class="tooltiptext tooltip-smaller" 
+                            [innerHTML]="object['damageTypeFR']['translations']['fr']['name']"></span>
+                        </b>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="object['usage'] == 'held-in-one-hand'">1</div>
+                    <div *ngIf="object['usage'] == 'held-in-one-plus-hands'">1+</div>
+                    <div *ngIf="object['usage'] == 'held-in-two-hands'">2</div>
+                </td>
+                <td>
+                    {{object["bulk"]}}
+                </td>
+                <td>
+                    <span class="tooltip">
+                        <b>{{object["group"]}}</b>
+                        <span class="tooltiptext tooltip-left" 
+                        [innerHTML]="'<p><b>' + object['group'] + ':</b> Fonctionnalité non supportée</p>'"></span>
+                    </span>
+                </td>
+                <td>
+                    <div *ngIf="object['category'] == 'simple'">Simple</div>
+                    <div *ngIf="object['category'] == 'martial'">De guerre</div>
+                    <div *ngIf="object['category'] == 'advanced'">Avancée</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

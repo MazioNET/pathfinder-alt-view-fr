@@ -1,0 +1,126 @@
+<div class="background">
+    <div class="filterbox">
+        <!-- EDIT MODE ONLY -->
+        <button [ngClass]="{'edit-unable':(editSelected.length) != 1}" 
+            *ngIf="EDIT_MODE"
+            [disabled]="(editSelected.length) != 1" 
+            (click)="confirm()" class="toggle toggle_edit">
+            Valider ({{editSelected.length}}/1)
+        </button>
+        <!-- END OF EDIT MODE ONLY -->
+        <input [(ngModel)]="textFilter" (keyup.enter)="dynamicFilter()" class="input" placeholder="Filtrer..." type="text"/>
+        <img (click)="dynamicFilter()" class="filter-icon" src='assets/filter-icon.png'>
+    
+        <button (click)="filterCom = !filterCom; dynamicFilter()" [ngClass]="{'off': !filterCom}" class="toggle">Commun</button>
+        <button (click)="filterUncom = !filterUncom; dynamicFilter()" [ngClass]="{'off': !filterUncom}" class="toggle">Peu Commun</button>
+        <button (click)="filterRar = !filterRar; dynamicFilter()" [ngClass]="{'off': !filterRar}" class="toggle">Rare</button>
+    </div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th *ngIf="EDIT_MODE">
+                </th>
+                <th>
+                    <b (click)="changeSortMode('nom')">Nom </b>
+                    <b *ngIf="sortMode == 'nom_asc'">↑</b>
+                    <b *ngIf="sortMode == 'nom_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('att')">Primes</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('her')">Héritages</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('pv')">PV</b>
+                    <b *ngIf="sortMode == 'pv_asc'">↑</b>
+                    <b *ngIf="sortMode == 'pv_desc'">↓</b>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [ngClass]="{'hidden': object['hidden'], 'data-table-even': object['grey']} "*ngFor="let object of data">
+                <td *ngIf="EDIT_MODE"  (click)="toggleSelected(object)">
+                    <div *ngIf="!object['selected']" class="edit-checkbox"></div>
+                    <div *ngIf="object['selected']" class="edit-checkbox edit-selected">✔</div>
+                </td>
+                <td>  
+                    <div class="class-column">
+                        <div class="post-class-icon">
+                            <div class="tooltip">
+                                <div class="name">{{object["translations"]["fr"]["name"].split(" ou ")[0] }}</div>
+                                <span class="tooltiptext" 
+                                    [innerHTML]="object['translations']['fr']['description'].split('</p>')[0].split('</em>')[0]"></span>
+                            </div>
+                            <br>
+                            <div class="trait-row">
+                                <div class="trait trait-alt2" (click)="goToLink('https://pf2e.pathfinder-fr.org/ancestries/'+object['_id'])">
+                                    <img style="width: 10px; margin-top: 0.5px; margin-bottom: -0.5px;" src='assets/link.png'>
+                                </div>
+                                <div class="trait trait-alt2 tooltip">
+                                    <img style="width: 10px; margin-top: 1px; margin-bottom: -1px;" src='assets/img.png'>
+                                    <span class="tooltiptext tooltiptext-img" 
+                                        [innerHTML]="object['img']">
+                                    </span>
+                                </div>
+                                <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'uncommon'">Peu Commun</div>
+                                <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'rare'">Rare</div>
+                                <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'unique'">Unique</div>
+                                <div class="trait tooltip" *ngFor="let trait of object['traits']['value']">
+                                    {{trait["translations"]["fr"]["name"]}}
+                                    <span *ngIf="trait['translations']['fr']['description'] != undefined" 
+                                        class="tooltiptext" 
+                                        [innerHTML]="'<p><b>' + trait['translations']['fr']['name'] + ':</b> ' + trait['translations']['fr']['description'] + '</p>'"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </td>
+                <td>
+                    <div class="attribs">
+                        <span><b>+1 Libre</b></span>
+                        <span *ngFor="let item of object['bonus']">
+                            <span *ngIf="item == 'str'"><b>+1</b> For</span>
+                            <span *ngIf="item == 'dex'"><b>+1</b> Dext</span>
+                            <span *ngIf="item == 'con'"><b>+1</b> Const</span>
+                            <span *ngIf="item == 'int'"><b>+1</b> Int</span>
+                            <span *ngIf="item == 'wis'"><b>+1</b> Sag</span>
+                            <span *ngIf="item == 'cha'"><b>+1</b> Char</span>
+                        </span>
+                        <span *ngFor="let item of object['malus']">
+                            <span *ngIf="item == 'str'"><b>-1</b> For</span>
+                            <span *ngIf="item == 'dex'"><b>-1</b> Dext</span>
+                            <span *ngIf="item == 'con'"><b>-1</b> Const</span>
+                            <span *ngIf="item == 'int'"><b>-1</b> Int</span>
+                            <span *ngIf="item == 'wis'"><b>-1</b> Sag</span>
+                            <span *ngIf="item == 'cha'"><b>-1</b> Char</span>
+                        </span>
+                    </div>
+                </td>
+                <td>
+                    <span class="heritages">
+                        <span *ngFor="let herit of object['heritages']" class="trait">
+                            <div class="tooltip">
+                                <div class="name">
+                                    {{herit["translations"]["fr"]["name"].split(" ou ")[0]}}
+                                    <img (click)="goToLink('https://pf2e.pathfinder-fr.org/heritages/'+herit['_id'])" style="width: 10px; margin-top: 0.5px; margin-bottom: -0.5px;" src='assets/link.png'>
+                                </div>
+                                
+                                <span class="tooltiptext" 
+                                    [innerHTML]="herit['translations']['fr']['description'].split('</p>')[0].split('</em>')[0]"></span>
+                            </div>
+
+                        </span>  
+                    </span>
+                    
+                </td>
+                <td>
+                    <b style="min-width: 200px;">+{{object['hp']}}</b>
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

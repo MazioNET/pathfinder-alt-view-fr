@@ -1,0 +1,79 @@
+<div class="background">
+    <div class="filterbox">
+        <input [(ngModel)]="textFilter" (keyup.enter)="dynamicFilter()" class="input" placeholder="Filtrer..." type="text"/>
+        <img (click)="dynamicFilter()" class="filter-icon" src='assets/filter-icon.png'>
+    </div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>
+                    <b (click)="changeSortMode('nom')">Nom </b>
+                    <b *ngIf="sortMode == 'nom_asc'">↑</b>
+                    <b *ngIf="sortMode == 'nom_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('attt')">Attribut principal</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('pv')">PV</b>
+                    <b *ngIf="sortMode == 'pv_asc'">↑</b>
+                    <b *ngIf="sortMode == 'pv_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('mag')">Sorts ?</b>
+                    <b *ngIf="sortMode == 'mag_asc'">↑</b>
+                    <b *ngIf="sortMode == 'mag_desc'">↓</b>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [ngClass]="{'hidden': object['hidden'], 'data-table-even': object['grey']} "*ngFor="let object of data">
+                <td>  
+                    <div class="class-column">
+                        <img class="class-icon" src='{{"assets/classes/"+ object["name"].toLowerCase() +".png"}}'>
+                        <div class="post-class-icon">
+                            <div class="tooltip">
+                                <div class="name">{{object["translations"]["fr"]["name"].split(" ou ")[0] }}</div>
+                                <span class="tooltiptext" 
+                                    [innerHTML]="object['translations']['fr']['description'].split('</em></p>')[0]"></span>
+                            </div>
+                            <br>
+                            <div class="trait-row">
+                                <div class="trait trait-alt2" (click)="goToLink('https://pf2e.pathfinder-fr.org/classes/'+object['_id'])">
+                                    <img (click)="dynamicFilter()" style="width: 10px; margin-top: 0.5px; margin-bottom: -0.5px;" src='assets/link.png'>
+                                </div>
+                                <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'uncommon'">Peu Commun</div>
+                                <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'rare'">Rare</div>
+                                <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'unique'">Unique</div>
+                                <div class="trait tooltip" *ngFor="let trait of object['traits']['value']">
+                                    {{trait["translations"]["fr"]["name"]}}
+                                    <span *ngIf="trait['translations']['fr']['description'] != undefined" 
+                                        class="tooltiptext" 
+                                        [innerHTML]="'<p><b>' + trait['translations']['fr']['name'] + ':</b> ' + trait['translations']['fr']['description'] + '</p>'"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </td>
+                <td>
+                    <span *ngFor="let item of object['keyAbility']">
+                        <span *ngIf="item == 'str'">Force <br></span>
+                        <span *ngIf="item == 'dex'">Dextérité <br></span>
+                        <span *ngIf="item == 'con'">Constitution <br></span>
+                        <span *ngIf="item == 'int'">Intelligence <br></span>
+                        <span *ngIf="item == 'wis'">Sagesse <br></span>
+                        <span *ngIf="item == 'cha'">Charisme <br></span>
+                    </span>
+                </td>
+                <td>
+                    <b>+{{object['hp']}}</b> pv
+                </td>
+                <td>
+                    <span *ngIf="object['spellcasting'] == 0" >Non</span>
+                    <span *ngIf="object['spellcasting'] == 1" ><b>Oui</b></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,159 @@
+//ACTUAL CSS STARTS HERE!!
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    overflow-y: scroll;
+}
+
+.data-table thead tr {
+    background-color: #27445D;
+    color: #ffffff;
+    text-align: left;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px 15px;
+}
+
+.data-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    background-color: #ffffff;
+}
+
+.data-table-even {
+    background-color: #f3f3f3 !important;
+}
+
+
+.data-table tbody tr:last-of-type {
+    border-bottom: 2px solid #db6fb5;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 400px;
+    background-color: #27445D;
+    color: #fff;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: small;
+    border-radius: 6px;
+    padding: 0px 10px;
+
+    top: 100%;
+    left: 50%;
+    margin-left: 0px;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+  
+.tooltip .tooltip-smaller {
+    width: auto;
+}
+
+.tooltip .tooltip-left {
+    top: 100%;
+  right: 50%;
+  left: auto;
+}
+
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+strong {
+    visibility: hidden !important;
+}
+
+.trait{
+    background-color: #477870;
+    color: #fff;
+    display: inline-block;
+    margin-top: 5px;
+    margin-right: 4px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: smaller;
+}
+
+.trait-alt{
+    background-color: #62bdaa;
+}
+
+.trait-alt2{
+    background-color: #526462;
+}
+.damage-dice{
+    font-size: 1.1em;
+}
+
+.damage-type-icon{
+    width: 15px;
+}
+
+.price{
+    font-size: smaller;
+    opacity: 0.5;
+    padding-right: 3px;
+}
+
+
+
+
+.class-column{
+    display: flex;
+    flex-direction: row;
+}
+
+.class-icon{
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+    margin-left: -5px;
+
+    opacity: 0.8;
+}
+
+.toggle{
+    width: 100px;
+}
+
+.tooltiptext-img{
+    padding: 10px !important;
+    display: flex;
+    flex-direction: row;
+    width: auto !important;
+    background-color: #ffffff !important;
+    border: solid 1.5px #477870;
+}
+
+.heritages{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 75%;
+}
+
+.attribs{
+    width: 130px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.attribs span{
+    margin-right: 5px;
+    margin-top: 3px;
+}

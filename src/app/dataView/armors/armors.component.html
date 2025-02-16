@@ -1,0 +1,107 @@
+<div class="background">
+    <div class="filterbox">
+        <input [(ngModel)]="textFilter" (keyup.enter)="dynamicFilter()" class="input" placeholder="Filtrer..." type="text"/>
+        <img (click)="dynamicFilter()" class="filter-icon" src='assets/filter-icon.png'>
+        <span class="lesser-than"><</span>
+        <input [(ngModel)]="forFilter" (keyup.enter)="dynamicFilter()" class=" input input-number" placeholder="Force" type="number"/>
+        <img (click)="dynamicFilter()" class="filter-icon" src='assets/filter-icon.png'>
+        
+        <button (click)="filterUna = !filterUna; dynamicFilter()" [ngClass]="{'off': !filterUna}" class="toggle">Sans</button>
+        <button (click)="filterLig = !filterLig; dynamicFilter()" [ngClass]="{'off': !filterLig}" class="toggle">Legère</button>
+        <button (click)="filterMed = !filterMed; dynamicFilter()" [ngClass]="{'off': !filterMed}" class="toggle">Moyenne</button>
+        <button (click)="filterHea = !filterHea; dynamicFilter()" [ngClass]="{'off': !filterHea}" class="toggle">Lourde</button>
+
+    </div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>
+                    <b (click)="changeSortMode('nom')">Nom </b>
+                    <b *ngIf="sortMode == 'nom_asc'">↑</b>
+                    <b *ngIf="sortMode == 'nom_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('poids')">Poids </b>
+                    <b *ngIf="sortMode == 'poids_asc'">↑</b>
+                    <b *ngIf="sortMode == 'poids_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('ca')">CA</b>
+                    <b *ngIf="sortMode == 'ca_asc'">↑</b>
+                    <b *ngIf="sortMode == 'ca_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('dex')">Dext. max</b>
+                    <b *ngIf="sortMode == 'ca_asc'">↑</b>
+                    <b *ngIf="sortMode == 'ca_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('force')">Force Requise</b>
+                    <b *ngIf="sortMode == 'force_asc'">↑</b>
+                    <b *ngIf="sortMode == 'force_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('pen')">Pénalité</b>
+                    <b *ngIf="sortMode == 'pen_asc'">↑</b>
+                    <b *ngIf="sortMode == 'pen_desc'">↓</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('categorie')">Catégorie </b>
+                    <b *ngIf="sortMode == 'categorie_asc'">↑</b>
+                    <b *ngIf="sortMode == 'categorie_desc'">↓</b>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [ngClass]="{'hidden': object['hidden'], 'data-table-even': object['grey']} "*ngFor="let object of data">
+                <td>   
+                    <div class="tooltip">
+                        <div class="name">{{object["translations"]["fr"]["name"] }}</div>
+                        <span class="tooltiptext" 
+                            [innerHTML]="object['translations']['fr']['description']"></span>
+                    </div>
+                    <br>
+                    <div class="trait-row">
+                        <b class="price" *ngIf="object['price']['gp'] != null">{{object['price']['gp']}} po </b>
+                        <b class="price" *ngIf="object['price']['sp'] != null">{{object['price']['sp']}} pa </b>
+                        <b class="price" *ngIf="object['price']['cp'] != null">{{object['price']['cp']}} pc </b>
+                        <div class="trait trait-alt2" (click)="goToLink('https://pf2e.pathfinder-fr.org/equipment/'+object['_id'])">
+                            <img (click)="dynamicFilter()" style="width: 10px; margin-top: 0.5px; margin-bottom: -0.5px;" src='assets/link.png'>
+                        </div>
+                        <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'uncommon'">Peu Commun</div>
+                        <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'rare'">Rare</div>
+                        <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'unique'">Unique</div>
+                        <div class="trait tooltip" *ngFor="let trait of object['traits']['value']">
+                            {{trait["translations"]["fr"]["name"]}}
+                            <span *ngIf="trait['translations']['fr']['description'] != undefined" 
+                                class="tooltiptext" 
+                                [innerHTML]="'<p><b>' + trait['translations']['fr']['name'] + ':</b> ' + trait['translations']['fr']['description'] + '</p>'"></span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    {{object["bulk"]}}
+                </td>
+                <td>
+                    <b>+{{object["acBonus"]}}</b>
+                </td>
+                <td>
+                    {{object["dexCap"]}}
+                </td>
+                <td>
+                    {{object["strength"]}}
+                </td>
+                <td>
+                    {{object["checkPenalty"]}} <span *ngIf="object['speedPenalty'] != 0">(<b>{{object['speedPenalty']/5}}◇</b>)</span>
+                </td>
+                <td>
+                    <div *ngIf="object['category'] == 'unarmored'">Sans armure</div>
+                    <div *ngIf="object['category'] == 'light' || object['category'] == 'light-barding'">Légère</div>
+                    <div *ngIf="object['category'] == 'medium'">Moyenne</div>
+                    <div *ngIf="object['category'] == 'heavy'">Lourde</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

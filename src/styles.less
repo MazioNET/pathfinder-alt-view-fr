@@ -1,1 +1,313 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: Pathfinder2eActions;
+    src: url(/assets/fonts/Pathfinder2eActions.ttf) format("truetype");
+    font-display: block
+}
+
+html, body {
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+.overlay{
+    position: fixed;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.main{
+    padding-top: 45px;
+    height: calc(100% - 45px);
+    width: 100%;
+}
+
+.background{
+    height: 100%;
+    max-width: 100vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.filterbox{
+    width: 100vw !important;
+}
+
+table{
+    margin:0;
+    width: 100vw !important;
+    overflow: hidden !important;
+    padding-right: 10px;
+}
+
+.headerbox{
+    width: 100%;
+    min-height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 1.5em;
+    font-family: sans-serif;
+    background-color: #27445D;
+    color: #ffffff;
+
+    padding: 0px;
+    margin: 0px; 
+}
+
+.title-icon{
+    height: 20px;
+    padding-left: 10px;
+    padding-right: 15px;
+    
+    pointer-events: all;
+}
+
+.hidden{
+    height: 0;
+    display: none;
+}
+
+.main-title{
+    margin-left: 0px;
+}
+
+.filterbox{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 40px;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    background-color: #497D74;
+    color: #ffffff;
+
+    padding: 0px;
+    margin: 0px; 
+}
+
+.input{
+    height: 25px;
+    width: 250px;
+    margin: 5px;
+    background-color: #71bbb27a;
+    border: #72b8b0 solid 1.5px;
+    border-radius: 5px;
+
+    font-family: sans-serif;
+    color: #ffffff;
+
+    margin-right: -25px;
+    padding-right: 25px;
+    padding-left: 5px;
+}
+
+.input::placeholder{
+    font-family: sans-serif;
+    color: #c4fff8;
+    opacity: 0.7;
+}
+
+.filter-icon{
+    margin-top: 5px;
+    margin-right: 5px;
+    padding-top: 5px;
+    margin-bottom: -5px;
+    height: 20px;
+}
+
+.toggle{
+    width: 70px;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    padding: 0;
+
+
+    background-color: #497D74;
+    border: #72b8b0 solid 1.5px;
+    border-radius: 5px;
+
+    text-align: center;
+    font-family: sans-serif;
+    color: #ffffff;
+    transition: background-color 0.2s;
+}
+
+.off{
+    background-color: #10292644;
+    color: #93dcd4a3;
+}
+
+.toggle:hover{
+    background-color: #71bbb27a;
+}
+
+.off:hover{
+    background-color: #497D74;
+}
+
+.grd{
+    background-color: #71BBB2;
+    height: 5px;
+}
+
+.sidebox{
+    position: absolute;
+    left: 0;
+
+    background-color: #27445D;
+    height: 100%;
+    min-width: 200px;
+    width: 15%;
+    box-shadow: rgba(0, 0, 0, 0.281) 10px 5px 20px;
+    z-index: 1;
+
+    transition: left 0.2s;
+    pointer-events: all;
+}
+
+.sidebox-right{
+    position: absolute;
+    right: 0;
+
+    background-color: #8b8b8ba2;
+    height: 100%;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.281) 10px 5px 20px;
+    z-index: 1;
+
+    transition: opacity 0.2s;
+    
+    pointer-events: all;
+    opacity: 1;
+
+}
+
+.hidden-sidebox{
+    left: -1*(60vw + 100px);
+}
+
+.hidden-sidebox-right{
+    pointer-events: none;
+    opacity: 0;
+}
+
+.section{
+    width: calc(100% - 2.5px);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: #ffffff;
+}
+
+// .sectionA span{
+//     color: #ec7272;
+// }
+
+// .sectionB span{
+//     color: #71BBB2;
+// }
+
+// .sectionC span{
+//     color: #f171e0;
+// }
+
+// .sectionD span{
+//     color: #ece072;
+// }
+
+.side-option{
+    width: calc(100% - 2.5px);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+
+    background-color: none;
+    transition: background-color 0.2s, padding-left 0.2s;
+    font-size: 1.0em;
+    font-family: sans-serif;
+    color: #ffffff;
+}
+
+.sideA{
+    color: #ffc0c0;
+}
+
+.sideB{
+    color: #ace8dd;
+}
+
+.sideC{
+    color: #ffbaf8
+}
+
+.sideD{
+    color: #eee5bb;
+}
+
+.side-option:hover{
+    background-color: #ababab;
+    padding-left: 15px;
+}
+
+.sideA:hover{
+    background-color: #ab5656;
+}
+
+.sideB:hover{
+    background-color: #47867c;
+}
+
+.sideC:hover{
+    background-color: #ab56a3;
+}
+
+.sideD:hover{
+    background-color: #ab9b56;
+}
+
+.edit-unable{
+    filter: saturate(0) !important;
+}
+
+.edit-checkbox{
+    width: 20px;
+    height: 20px;
+    border: solid 1.5px #27445D;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.edit-selected{
+    background-color: #27445D;
+}
+
+.toggle_edit{
+    position: absolute;
+    top:0px;
+    right: 5px;
+    z-index: 2;
+    height: 30px;
+    width: 120px !important;
+}
+
+.edit-subtext{
+    opacity: 0.6;
+    font-size: 0.8em;
+    margin-top: 0px;
+}

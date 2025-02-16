@@ -1,0 +1,93 @@
+<div class="background">
+    <div class="filterbox">
+        <input [(ngModel)]="textFilter" (keyup.enter)="dynamicFilter()" class="input" placeholder="Filtrer..." type="text"/>
+        <img (click)="dynamicFilter()" class="filter-icon" src='assets/filter-icon.png'>
+        
+        <select (change)="dynamicFilter()" [(ngModel)]="tradFilter" class="input input-select"  name="pets" id="pet-select">
+            <option class="placeholder" value=""><b>Tradition</b></option>
+            <option class="option" value="special">Inné (classe)</option>
+            <option class="option" value="arcane">Arcane</option>
+            <option class="option" value="divine">Divin</option>
+            <option class="option" value="occult">Occulte</option>
+            <option class="option" value="primal">Primordial</option>
+          </select>  
+
+        <div style="width: 25px;"></div>
+        <button (click)="filterSor = !filterSor; dynamicFilter()" [ngClass]="{'off': !filterSor}" class="toggle">Sorts</button>
+        <button (click)="filterMin = !filterMin; dynamicFilter()" [ngClass]="{'off': !filterMin}" class="toggle">Mineur</button>
+        <button (click)="filterFoc = !filterFoc; dynamicFilter()" [ngClass]="{'off': !filterFoc}" class="toggle">Focalisé</button>
+        <div style="width: 5px;"></div>
+        <span class="input-label">Niveaux:</span>
+        <input [(ngModel)]="minFilter"  (keyup.enter)="dynamicFilter()" class=" input input-number" placeholder="min" type="number"/>
+        <span class="input-label">à</span>
+        <input [(ngModel)]="maxFilter" (keyup.enter)="dynamicFilter()" class=" input input-number" placeholder="max" type="number"/>
+
+    </div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>
+                    <b (click)="changeSortMode('nom')">Nom </b>
+                    <b *ngIf="sortMode == 'nom_asc'">↑</b>
+                    <b *ngIf="sortMode == 'nom_desc'">↓</b>
+                </th>
+                <th class="type-list">
+                    Type(s)
+                </th>
+                <th>
+                    <b (click)="changeSortMode('lvl')">Niveau</b>
+                    <b *ngIf="sortMode == 'lvl_asc'">↑</b>
+                    <b *ngIf="sortMode == 'lvl_desc'">↓</b>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [ngClass]="{'hidden': object['hidden'], 'data-table-even': object['grey']} "*ngFor="let object of data">
+                <td>   
+                    <div class="tooltip">
+                        <div class="name">
+                            <span *ngIf="object['time'] == '1'" class="action-icon">A</span>
+                            <span *ngIf="object['time'] == '2'" class="action-icon">D</span>
+                            <span *ngIf="object['time'] == '3'" class="action-icon">T</span>
+                            <span *ngIf="object['time'] == '1 to 3'" class="action-icon">A·T</span>
+                            
+                            <span *ngIf="object['time'] == 'reaction'" class="action-icon">R</span>
+                            {{object["translations"]["fr"]["name"] }}
+                        </div>
+                        <span class="tooltiptext" 
+                            [innerHTML]="object['translations']['fr']['description']"></span>
+                    </div>
+                    <br> 
+                    <div class="trait-row">
+                        <div class="trait trait-alt2" (click)="goToLink('https://pf2e.pathfinder-fr.org/spells/'+object['_id'])">
+                            <img (click)="dynamicFilter()" style="width: 10px; margin-top: 0.5px; margin-bottom: -0.5px;" src='assets/link.png'>
+                        </div>
+                    
+                        <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'uncommon'">Peu Commun</div>
+                        <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'rare'">Rare</div>
+                        <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'unique'">Unique</div>
+                        <div class="trait tooltip" *ngFor="let trait of object['traits']['value']">
+                            {{trait["translations"]["fr"]["name"]}}
+                            <span *ngIf="trait['translations']['fr']['description'] != undefined" 
+                                class="tooltiptext" 
+                                [innerHTML]="'<p><b>' + trait['translations']['fr']['name'] + ':</b> ' + trait['translations']['fr']['description'] + '</p>'"></span>
+                        </div>
+                    </div>
+                </td>
+                <td class="type-list">
+                    <b *ngFor="let type of object['damageTypeFR']" class="tooltip">
+                        <img style="width: 30px;" *ngIf="type" class="damage-type-icon" src='{{"assets/damageTypes/" + type["name"].toLowerCase() + ".png"}}'>
+                        <span *ngIf="type" class="tooltiptext tooltip-smaller" 
+                        [innerHTML]="type['translations']['fr']['name']"></span>
+                    </b>
+                </td>
+                <td>
+                    <b>Niveau {{object['level']}}</b>
+                    <span *ngIf="object['cantrip']"><br>Mineur</span>
+                    <span *ngIf="object['focus']"><br>Focalisé</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
