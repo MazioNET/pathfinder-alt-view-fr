@@ -1,0 +1,103 @@
+<div class="background">
+    <div class="filterbox">
+        <!-- EDIT MODE ONLY -->
+        <button [ngClass]="{'edit-unable':(editSelected.length) != EDIT_NB}" 
+            *ngIf="EDIT_MODE"
+            [disabled]="(editSelected.length) != EDIT_NB" 
+            (click)="confirm()" class="toggle toggle_edit">
+            Valider ({{editSelected.length}}/{{EDIT_NB}})
+        </button>
+        <!-- END OF EDIT MODE ONLY -->
+        <input [(ngModel)]="textFilter" (keyup.enter)="dynamicFilter()" class="input" placeholder="Filtrer les dons" type="text"/>
+        <img (click)="dynamicFilter()" class="filter-icon" src='assets/filter-icon.png'>
+        
+        <input [(ngModel)]="ancFilter" (keyup.enter)="dynamicFilter()" class="input" placeholder="Filtrer les compétences" type="text"/>
+        <img (click)="dynamicFilter()" class="filter-icon" src='assets/filter-icon.png'>
+
+        <button (click)="skillFilter = !skillFilter; dynamicFilter()" [ngClass]="{'off': !skillFilter}" style="width: 150px;" class="toggle">Dons de Compétence</button>
+        
+        
+
+        <span class="input-label">Niveaux:</span>
+        <input [(ngModel)]="minFilter"  (keyup.enter)="dynamicFilter()" class=" input input-number" [disabled]="EDIT_LVL != -1" [ngClass]="{'edit-unable':EDIT_LVL != -1}" [ngClass]="{'edit-unable':EDIT_ID != null}" [disabled]="EDIT_ID != null"  placeholder="min" type="number"/>
+        <span class="input-label">à</span>
+        <input [(ngModel)]="maxFilter" (keyup.enter)="dynamicFilter()" class=" input input-number" [disabled]="EDIT_LVL != -1" [ngClass]="{'edit-unable':EDIT_LVL != -1}" [ngClass]="{'edit-unable':EDIT_ID != null}" [disabled]="EDIT_ID != null"  placeholder="max" type="number"/>
+
+    </div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th *ngIf="EDIT_MODE">
+                </th>
+                <th>
+                    <b (click)="changeSortMode('nom')">Nom </b>
+                    <b *ngIf="sortMode == 'nom_asc'">↑</b>
+                    <b *ngIf="sortMode == 'nom_desc'">↓</b>
+                </th>
+                <th>
+                    <b>Prérequis</b>
+                </th>
+                <th>
+                    <b>Compétence(s)</b>
+                </th>
+                <th>
+                    <b (click)="changeSortMode('lvl')">Niveau</b>
+                    <b *ngIf="sortMode == 'lvl_asc'">↑</b>
+                    <b *ngIf="sortMode == 'lvl_desc'">↓</b>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [ngClass]="{'hidden': object['hidden'], 'data-table-even': object['grey']} "*ngFor="let object of data">
+                <td *ngIf="EDIT_MODE"  (click)="toggleSelected(object)">
+                    <div *ngIf="!object['selected']" class="edit-checkbox"></div>
+                    <div *ngIf="object['selected']" class="edit-checkbox edit-selected">✔</div>
+                </td>
+                <td>   
+                    <div class="tooltip">
+                        <div class="name"> <!-- remettre la class="action-icon"-->
+                            <span *ngIf="object['actions'] == '1'" class="action-icon">A</span>
+                            <span *ngIf="object['actions'] == '2'" class="action-icon">D</span>
+                            <span *ngIf="object['actions'] == '3'" class="action-icon">T</span>
+                            <span *ngIf="object['actions'] == '1 to 3'" class="action-icon">A·T</span>
+                            
+                            <span *ngIf="object['actionType'] == 'reaction'" class="action-icon">R</span>
+                            {{object["translations"]["fr"]["name"] }}
+                        </div>
+                        <span class="tooltiptext" 
+                            [innerHTML]="object['translations']['fr']['description']"></span>
+                    </div>
+                    <br> 
+                    <div class="trait-row">
+                        <div class="trait trait-alt2" (click)="goToLink('https://pf2e.pathfinder-fr.org/feats/'+object['_id'])">
+                            <img (click)="dynamicFilter()" style="width: 10px; margin-top: 0.5px; margin-bottom: -0.5px;" src='assets/link.png'>
+                        </div>
+                    
+                        <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'uncommon'">Peu Commun</div>
+                        <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'rare'">Rare</div>
+                        <div class="trait trait-alt" *ngIf="object['traits']['rarity'] == 'unique'">Unique</div>
+                        <div class="trait tooltip" *ngFor="let trait of object['traits']['value']">
+                            <span *ngIf="trait['translations']!= undefined">{{trait["translations"]["fr"]["name"]}}</span>
+                            <span *ngIf="trait['translations']!= undefined" 
+                                class="tooltiptext" 
+                                [innerHTML]="'<p><b>' + trait['translations']['fr']['name'] + ':</b> ' + trait['translations']['fr']['description'] + '</p>'"></span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <b class="ancestry-list">{{object['translations']['fr']['prerequisites']}}</b>
+                </td>
+                <td>
+                    <b class="ancestry-list">{{object['ancestry'].toString().replaceAll(',',' ')}}</b>
+                </td>
+                <td>
+                    <b>Niveau {{object['level']}}</b>
+                    <span *ngIf="object['cantrip']"><br>Mineur</span>
+                    <span *ngIf="object['focus']"><br>Focalisé</span>
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,1569 @@
+{
+	"Alchimiste":{
+		"1":[
+			{
+				"feature":"Alchimie",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Obtenez le don <b>Artisanat Alchimique</b>",
+				"comment":""
+			},
+				{
+					"feature":"Recueil de formules",
+					"hierarchy":2,
+					"choice":[],
+					"type":"comment",
+					"description":"Gagnez les formules de deux objets courants alchimiques de niveau 1.",
+					"comment":""
+				},
+				{
+					"feature":"Alchimie avancée",
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Lors de préparatifs quotidiens et sans test d'Artisanat, Fabriquez jusqu'à 4+[Intelligence] consommables de niveau >= au votre.<br>Ces objets restent efficaces pour la journée.",
+					"comment":""
+				},
+				{
+					"feature":"Alchimie rapide",
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Gagnez l'action <b>Alchimie rapide</b> (cf.classe)",
+					"comment":""
+				},
+			{
+				"feature":"Champ de recherche",
+				"hierarchy":1,
+				"choice":[
+					"Bombardier/Artificier",
+					"Chirurgien",
+					"Mutagéniste",
+					"Toxicologiste"
+				],
+				"type":"choice",
+				"description":"Choisissez un champ de recherche, il vous donne des formules, un effet de recherche ainsi que des capacités pour vos fioles polyvalentes.",
+				"comment":""
+			},
+				{
+					"feature":"Fioles polyvalentes",
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Lors de préparatifs quotidiens, créez 2+[Intelligence] fioles (maximum) élevées au niveau maximal d'objets Fabricables. Vous en récupèrez 2 pour chaque 10 minutes hors combat.<br> Les fioles sont jetées comme des bombes (cf. classe pour les statistiques)",
+					"comment":""
+				}
+		],
+		"2":[
+			{
+				"feature":"Recueil de formules",
+				"hierarchy":1,
+				"choice":[],
+				"type":"comment",
+				"description":"Gagnez les formules de deux objets courants alchimiques de niveau 2 ou moins.",
+				"comment":""
+			}
+		],
+		"3":[
+			{
+				"feature":"Recueil de formules",
+				"hierarchy":1,
+				"choice":[],
+				"type":"comment",
+				"description":"Gagnez les formules de deux objets courants alchimiques de niveau 3 ou moins.",
+				"comment":""
+			}
+		],
+		"4":[
+			{
+				"feature":"Recueil de formules",
+				"hierarchy":1,
+				"choice":[],
+				"type":"comment",
+				"description":"Gagnez les formules de deux objets courants alchimiques de niveau 4 ou moins.",
+				"comment":""
+			}
+		],
+		"5":[
+			
+			{
+				"feature":"Alchimie puissante",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous pouvez remplacer le DD d'un objet alchimique imprégné que vous avez créé par votre DD de classe.",
+				"comment":""
+			},
+			{
+				"feature":"Découverte de champ de recherche",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous apprenez la découverte de domaine de votre champ de recherche.",
+				"comment":""
+			},
+			{
+				"feature":"Recueil de formules",
+				"hierarchy":1,
+				"choice":[],
+				"type":"comment",
+				"description":"Gagnez les formules de deux objets courants alchimiques de niveau 5 ou moins.",
+				"comment":""
+			}
+		]
+	},
+
+
+	"Barbare":{
+		"1":[
+			{
+				"feature":"Impulsif", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous gagnez l'action gratuite <b>Impulsif</b> qui vous permet de rentrer en rage",
+				"comment":""
+			},
+			{
+				"feature":"Rage", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous gagnez l'action <b>Rage</b>. Quand vous êtes en Rage, vous gagnez [Niveau]+[Intelligence] PV temporaires, vous infligez 2 dégâts supplémentaires aux frappes au CàC (ou la moitié si l'arme est Agile), mais vous ne pouvez pas effectuer d'actions de Concentration (sauf pour les actions de Rage et Chercher).<br> La rage dure jusqu'à 1 minute.",
+				"comment":""
+			},
+			{
+				"feature":"Instinct",
+				"hierarchy":1,
+				"choice":[
+					"Instinct animal",
+					"Instinct de décomposition",
+					"Instinct de géant",
+					"Instinct de la furie",
+					"Instinct du dragon",
+					"Instinct élémentaire",
+					"Instinct ligneux",
+					"Instinct spirituel",
+					"Instinct superstitieux"
+				],
+				"type":"choice",
+				"description":"Choisissez un instict, il vous donne une capacité et donne accès à ses dons exclusifs.",
+				"comment":""
+			}
+		],
+		"2":[
+
+		],
+		"3":[
+			{
+				"feature":"Démarche furieuse", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez un bonus de statut de +1.50m de vitesse (+3m quand enragé)",
+				"comment":""
+			}
+		],
+		"4":[
+
+		],
+		"5":[
+			{
+				"feature":"Brutalité", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b> Armes simples, de guerre, mains nues: Qualifié > Expert </b><br> Lorsque vous êtes enragé, vous obtenez les effets critiques des armes de corps à corps et à mains nues.",
+				"comment":""
+			}
+		]
+	},
+	"Barde":{
+		"1":[
+			{
+				"feature":"Incantation de barde", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous pouvez lancer des sorts de la tradition <b>Occulte</b> qui sont inscrits dans votre répertoire de sort.",
+				"comment":""
+			},
+				{
+					"feature":"Sorts mineurs (tours de magie)", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vous pouvez lancer des sorts mineurs de votre répertoire sans emplacements de sort, son rang est élevé automatiquement au rang de sort le plus haut que vous pouvez lancer.",
+					"comment":""
+				},
+				{
+					"feature":"Répertoire de sorts", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vous apprenez des sorts au même rythme que vos emplacements de sorts. Vous apprenez également cinq sorts mineurs.",
+					"comment":""
+				},
+				{
+					"feature":"Nouveaux sorts", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"spell 2 1",
+					"tradition":"occult",
+					"spellId":"0",
+					"description":"",
+					"comment":""
+				},
+				{
+					"feature":"Nouveaux sorts mineurs", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"spell 5 0",
+					"tradition":"occult",
+					"spellId":"1",
+					"description":"",
+					"comment":""
+				},
+			{
+				"feature":"Muses", 
+				"hierarchy":1,
+				"choice":[
+					"Combattante",
+					"Enigmatique",
+					"Maestro",
+					"Touche-à-tout",
+					"Zoophonie"
+				],
+				"type":"choice",
+				"description":"Vous choisissez une muse, elle vous apporte un don de niveau 1 et ajoute un sort supplémentaire à votre répertoire. Chaque muse accorde accès à des dons exclusifs.",
+				"comment":""
+			},
+			{
+				"feature":"Sorts de composition", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez le sort focalisé <b>Contre-représentation</b>, que vous pouvez utiliser avec un 1PF.<br> Votre total de PF est égal au nombre de sorts non-mineurs de focalisation que vous avez (maximum 3). Vous pouvez récupérer un PF en vous Refocalisant pendant 10 minutes.",
+				"comment":""
+			},
+			{
+				"feature":"Tour de magie de composition", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez le sort mineur <b>Hymne de courage</b>, que vous pouvez utiliser gratuitement, élevé au même niveau que vos autres sorts mineurs.",
+				"comment":""
+			}
+		],
+		"2":[
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"spell 1 1",
+				"tradition":"occult",
+				"spellId":"2",
+				"description":"",
+				"comment":""
+			}
+		],
+		"3":[
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"spell 2 2",
+				"tradition":"occult",
+				"spellId":"3",
+				"description":"",
+				"comment":""
+			}
+		],
+		"4":[
+
+		],
+		"5":[
+
+		]
+	},
+	"Bretteur":{
+		"1":[
+			{
+				"feature":"Panache",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez du Panache quand vous réalisez des actions de Bravade tel que <b>Déplacement acrobatique</b> (ou toute autre action osée validée par le MJ entrainant généralement un jet non trivial). Vous pouvez dépensser votre Panache pour effectuer des actions d'Aboutissement tel que <b>Aboutissement assuré</b>.",
+				"comment":""
+			},
+			{
+				"feature":"Frappe précise",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Lorsque vous frappez avec une arme de finesse ou agile au CàC, ajoutez 2 dégâts de précision supplémentaires. Les dégâts passent à 2d6 lors d'un Aboutissement.",
+				"comment":"5,9,13,17"
+			},
+			{
+				"feature":"Combattant stylé",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez un bonus de circonstance de +1 aux jets ayant le trait Bravade lors d'un combat. De plus, lorsque vous possedez du Panache, vous gagnez un bonus de statut de +1.5m à vos vitesses.",
+				"comment":""
+			},
+			{
+				"feature":"Style de bretteur",
+				"hierarchy":1,
+				"choice":[
+					"Danseur de combat",
+					"Escrimeur",
+					"Esprit",
+					"Fanfaron",
+					"Fripouille",
+					"Gymnaste"
+				],
+				"type":"choice",
+				"description":"Choisissez un style de bretteur, il vous donne une maitrise de compétence liée ainsi que de nouvelles manières de gagner du Panache.",
+				"comment":""
+			}
+		],
+		"2":[
+		],
+		"3":[
+			{
+				"feature":"Astuce de style",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez une amélioration de compétence appliquable qu'à l'Acrobatie ou la compétence de votre style de bretteur.",
+				"comment":""
+			},
+			{
+				"feature":"Expertise en vigueur",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b>Vigueur: Qualifié > Expert</b>",
+				"comment":""
+			},
+			{
+				"feature":"Riposte opportune",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous gagnez la réaction <b>Riposte opportune</b>.",
+				"comment":""
+			},
+			{
+				"feature":"Vitesse exubérante",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Votre bonus de vitesse de Combattant stylé passe à +3m.",
+				"comment":"7,11,15,19"
+			}
+		],
+		"4":[
+		],
+		"5":[
+			{
+				"feature":"Frappe précise +",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Les dégâts supplémentaires de la Frappe précise passe à +3 (+3d6 sur un Aboutissement).",
+				"comment":"5,9,13,17"
+			},
+			{
+				"feature":"Expertise avec les armes",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b> Armes simples, de guerre, mains nues: Qualifié > Expert </b><br> Vous obtenez les effets critiques des armes pour lesquelles vous êtes expert.",
+				"comment":""
+			}
+		]
+	},	
+	"Champion":{
+		"1":[
+			{
+				"feature":"Divinité",
+				"hierarchy":1,
+				"choice":[],
+				"type":"comment",
+				"description":"Choisissez une divinité, elle vous accorde une compétence, une arme de prédilection (augmentez les dégâts d'une arme de prélidection à main nues de un cran, et les armes de prédilection avancées comptent comme une arme de guerre).",
+				"comment":""
+			},
+				{
+					"feature":"Sanctification",
+					"hierarchy":2,
+					"choice":[
+						"Saint",
+						"Impie"
+					],
+					"type":"choice",
+					"description":"Votre divinité vous donne le trait saint ou impie, qui est référencé dans d'autres capacités. Obtenir le trait opposé de n'importe quelle manière retire le trait précédent.",
+					"comment":""
+				},
+				{
+					"feature":"Anathème", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"comment",
+					"description":"Si vous accomplissez trop d'actes anathèmes à votre divinité (comme effectuer des actions Impies lorsque lié au trait Saint par exemple), vous perdez temporairement les capacités magiques en lien avec votre divinité.",
+					"comment":""
+				},
+				{
+					"feature":"Aura de champion", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vos possedez une aura dans une émanation de 4,5m que vous pouvez activer et désactiver par une action. Elle est utilisable en tandem avec d'autres capacités. Un fidèle de votre divinité peut reconnaitre votre aura.",
+					"comment":""
+				},
+			{
+				"feature":"Cause",
+				"hierarchy":1,
+				"choice":[
+					"Grandeur (Saint)",
+					"Iniquité (Impie)",
+					"Justice",
+					"Libération",
+					"Obéissance",
+					"Profanation (Impie)",
+					"Rédemption (Saint)" 
+				],
+				"type":"choice",
+				"description":"Choissisez une cause, elle vous octroie une réaction de champion, et ajoute aux anathèmes.",
+				"comment":""
+			},
+			{
+				"feature":"Sort de dévotion", 
+				"hierarchy":1,
+				"choice":[
+					"Boucliers de l'esprit",
+					"Imposition des mains (Saint)",
+					"Toucher du vide (Impie)"
+				],
+				"type":"choix",
+				"description":"Vous obtenez un sort focalisé de dévotion au choix, que vous pouvez utiliser avec un 1PF.<br> Votre total de PF est égal au nombre de sorts non-mineurs de focalisation que vous avez (maximum 3). Vous pouvez récupérer un PF en vous Refocalisant pendant 10 minutes.",
+				"comment":""
+			},
+			{
+				"feature":"Blocage au bouclier", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous gagnez le don général <b>Blocage au bouclier</b>.",
+				"comment":""
+			}
+		],
+		"2":[
+		],
+		"3":[
+			{
+				"feature":"Bénédiction du dévot", 
+				"hierarchy":1,
+				"choice":[
+					"Arme bénie",
+					"Bouclier béni",
+					"Célérité bénie"
+				],
+				"type":"choix",
+				"description":"Choisissez une bénédiction, elle vous accorde une nouvelle capacité renforçante. Le détail de ces bénédictions se trouvent dans la fiche de description du Champion.",
+				"comment":""
+			}
+		],
+		"4":[
+		],
+		"5":[
+			{
+				"feature":"Expertise avec les armes", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b> Armes simples, de guerre, mains nues: Qualifié > Expert </b><br>.",
+				"comment":""
+			}
+		]
+	},
+
+
+	"Druide":{
+		"1":[
+			{
+				"feature":"Incantation de druide", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Le matin, vous pouvez préparer des sorts de la tradition <b>Primordiale</b> qui sont incluts dans la liste votre répertoire, les sorts courants primordiaux, et les sorts appris par l'activité Apprendre un Sort. Vous en préparez un par emplacement de sort disponible, ainsi que cinq sorts mineurs.",
+				"comment":""
+			},
+				{
+					"feature":"Sorts mineurs (tours de magie)", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vous pouvez lancer des sorts mineurs préparés sans emplacements de sort, son rang est élevé automatiquement au rang de sort le plus haut que vous pouvez lancer.",
+					"comment":""
+				},
+				{
+					"feature":"Nouveaux sorts", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vous obtenez 2 emplacements de sorts de niveau 1.",
+					"comment":""
+				},
+				{
+					"feature":"Nouveaux sorts mineurs", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vous obtenez 5 emplacements de sorts mineurs.",
+					"comment":""
+				},
+			{
+				"feature":"Anathème", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Si vous accomplissez trop d'actes anathèmes à l'ordre naturel (comme déteriorer des sites naturels par exemple), vous perdez temporairement vos capacités magiques de la classe de druide. Votre choix d'ordre druidique ajoute d'autres anathèmes.",
+				"comment":""
+			},
+			{
+				"feature":"Ordre druidique", 
+				"hierarchy":1,
+				"choice":[
+					"Ordre animal",
+					"Ordre de la feuille",
+					"  Ordre des spores",
+					"  Ordre du cultivateur",
+					"Ordre de la flamme",
+					"Ordre de la pierre",
+					"Ordre de la tempête",
+					"Ordre de la vague",
+					"Ordre indompté"
+				],
+				"type":"choice",
+				"description":"Choisissez un ordre druidique, il vons confère un don de classe, un sort d'ordre, des action anathèmes et une compétence.",
+				"comment":""
+			},
+				{
+					"feature":"Sorts d'ordre", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Votre ordre druidique vous octroie un sort d'ordre focalisé, que vous pouvez utiliser avec un 1PF.<br> Votre total de PF est égal au nombre de sorts non-mineurs de focalisation que vous avez (maximum 3). Vous pouvez récupérer un PF en vous Refocalisant pendant 10 minutes.",
+					"comment":""
+				},
+			{
+				"feature":"Blocage au bouclier", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous gagnez le don général <b>Blocage au bouclier</b>.",
+				"comment":""
+			},
+			{
+				"feature":"Voix de la nature", 
+				"hierarchy":1,
+				"choice":[
+					"Empathie animale",
+					"Empathie avec les plantes"
+				],
+				"type":"choice",
+				"description":"Vous gagnez au choix un don de druide.",
+				"comment":""
+			},
+			{
+				"feature":"Chant sauvage", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous gagnez le chant sauvage, une langue secrête des ordres de druides. Enseigner cette langue à un non-druide est anathème",
+				"comment":""
+			}
+		],
+		"2":[
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":2,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez 1 emplacement de sorts de niveau 1.",
+				"comment":""
+			}
+		],
+		"3":[
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":2,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez 2 emplacements de sorts de niveau 2.",
+				"comment":""
+			},
+			{
+				"feature":"Expertise en perception", 
+				"hierarchy":2,
+				"choice":[],
+				"type":"info",
+				"description":"<b>Perception: Qualifié > Expert</b>",
+				"comment":""
+			},
+			{
+				"feature":"Expertise en vigueur", 
+				"hierarchy":2,
+				"choice":[],
+				"type":"info",
+				"description":"<b>Vigueur: Qualifié > Expert</b>",
+				"comment":""
+			}
+		],
+		"4":[
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":2,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez 1 emplacements de sorts de niveau 2.",
+				"comment":""
+			}
+		],
+		"5":[
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":2,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez 2 emplacements de sorts de niveau 3.",
+				"comment":""
+			},
+			{
+				"feature":"Expertise en réflexes", 
+				"hierarchy":2,
+				"choice":[],
+				"type":"info",
+				"description":"<b>Réflexes: Qualifié > Expert</b>",
+				"comment":""
+			}
+		]
+	},
+	"Enquêteur":{
+		"1":[
+			{
+				"feature":"Sur l'affaire",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez l'activité <b>Suivre une piste</b> et <b>Partager les indices</b>.",
+				"comment":""
+			},
+			{
+				"feature":"Concevoir un stratagème",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez l'action <b>Concevoir un stratagème</b>.",
+				"comment":""
+			},
+				{
+					"feature":"Frappe stratégique",
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Quand vous touchez une frappe grâce à Concevoir un stratagème, vous infligez 1d6 dégâts de précision supplémentaire.",
+					"comment":"5,9,13,17"
+				},
+			{
+				"feature":"Méthodologie",
+				"hierarchy":1,
+				"choice":[
+					"Empirisme",
+					"Interrogatoire",
+					"Médecine forensique",
+					"Sciences alchimiques"
+				],
+				"type":"choice",
+				"description":"Choisissez une méthodologie, elle vous occtroie une ou des compétences, ainsi que des capacités supplémentaires.",
+				"comment":""
+			}
+		],
+		"2":[
+		],
+		"3":[
+			{
+				"feature":"Leçons accomplies",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez un don de compétence basé sur l'Intelligence, Sagesse, Charisme, ou sur une de vos compétences de méthodologie.",
+				"comment":"3,5,7,9,11,13,15,17,19"
+			},
+			{
+				"feature":"Souvenirs affutés",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Lorsque vous utiliser Se souvenir à partir d'une compétence non maitrisée, ajouter votre niveau au modificateur du jet.",
+				"comment":""
+			}
+		],
+		"4":[
+		],
+		"5":[
+			{
+				"feature":"Frappe stratégique+",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Augmentez les dégâts de Frappe stratégique de 1d6.",
+				"comment":"5,9,13,17"
+			},
+			{
+				"feature":"Leçons accomplies",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez un don de compétence basé sur l'Intelligence, Sagesse, Charisme, ou sur une de vos compétences de méthodologie.",
+				"comment":"3,5,7,9,11,13,15,17,19"
+			},
+			{
+				"feature":"Expertise avec les armes",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b> Armes simples, de guerre, mains nues: Qualifié > Expert </b>.",
+				"comment":"3,5,7,9,11,13,15,17,19"
+			}
+		]
+	},
+
+
+
+	
+	"Franc-tireur":{
+		"1":[
+			{
+				"feature":"Voie de franc-tireur",
+				"hierarchy":1,
+				"choice":[
+					"Voie de l'avant-garde",
+					"Voie du pistolame",
+					"Voie du pistoléro",
+					"Voie du sortiléro",
+					"Voie du tireur d'élite",
+					"Voie du vagabond"
+				],
+				"type":"choice",
+				"description":"Choisissez une voie, il vous accorde une action d'exploit, une action de recharge unique et une compétence supplémentaire.",
+				"comment":""
+			},
+			{
+				"feature":"Expertise singulière", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous infligez +2 dégâts de précision supplémentaire sur les Frappes avec une arbalète à recharge, ou +1d4 dégâts sur une arme à feu à recharge.",
+				"comment":""
+			}
+		],
+		"3":[
+			{
+				"feature":"Obstiné", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b>Volonté: Maitrise > Expert</b><br> Lors d'un échec à un jet de Volonté contre l'état Contrôlé, vous pouvez retentez le jet au début de votre prochain tour.",
+				"comment":""
+			}
+		],
+		"5":[
+			{
+				"feature":"Maîtrise des armes du franc-tireur", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b>Armes à feu et arbalètes de guerre: Expert > Maitre</b> <br> <b>Armes à feu et arbalètes simples: Expert > Maitre</b> <br> <b>Armes à feu et arbalètes avancées: Maitrise > Expert</b> <br> <b>Armes simples, de guerre, à mains nues: Maitrise > Expert</b> <br> Vous obtenez l'effet critique des armes à feu et arbalètes.",
+				"comment":""
+			}
+		]
+	},
+	"Guerrier":{
+		"1":[
+			{
+				"feature":"Blocage au bouclier", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous gagnez le don général <b>Blocage au bouclier</b>.",
+				"comment":""
+			},
+			{
+				"feature":"Frappe réactive", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez la réaction <b>Frappe réactive</b>.",
+				"comment":""
+			}
+		],
+		"2":[
+		],
+		"3":[
+			{
+				"feature":"Bravoure", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b>Volonté: Maitrise > Expert</b><br>Lorsque vous réussissez un jet de Volonté contre la peur, il devient une réussite critique. Chaque fois que vous obtenez l'état Effrayé, réduisez sa valeur de 1.",
+				"comment":""
+			}
+		],
+		"4":[
+		],
+		"5":[
+			{
+				"feature":"Maitrise martiale du guerrier", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Choisissez un groupe d'armes, vous devenez Maitre dans l'utilisation de ces armes (expert pour les armes évoluées). Vous obtenez l'effet critique de toute arme dont vous êtes Maitre.",
+				"comment":""
+			}
+		]
+	},
+
+
+
+
+	"Magicien":{
+		"1":[
+			{
+				"feature":"Incantation de magicien", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Le matin, vous pouvez préparer des sorts de la tradition <b>Arcanique</b> que vous possédez dans votre grimoire. Vous en préparez un par emplacement de sort disponible, ainsi que cinq sorts mineurs.",
+				"comment":""
+			},
+				{
+					"feature":"Sorts mineurs (tours de magie)", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vous pouvez lancer des sorts mineurs préparés sans emplacements de sort, son rang est élevé automatiquement au rang de sort le plus haut que vous pouvez lancer.",
+					"comment":""
+				},
+				{
+					"feature":"Le grimoire", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vous débutez avec un grimoire d'une valeur de 10pa max gratuitement. Il contient 10 sorts mineurs et 5 sorts arcaniques de rang 1 au choix",
+					"comment":""
+				},
+				{
+					"feature":"Nouveaux sorts", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"spell 5 1",
+					"tradition":"arcane",
+					"spellId":"0",
+					"description":"",
+					"comment":""
+				},
+				{
+					"feature":"Nouveaux sorts mineurs", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"spell 10 0",
+					"tradition":"arcane",
+					"spellId":"1",
+					"description":"",
+					"comment":""
+				},
+			{
+				"feature":"Lien arcanique", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Lorsque vous préparez vos sorts, vous pouvez vous lier avec un objet associé à l'incentation. Vous pouvez une fois par jour effectuer l'action gratuite <b>Drain d'objet lié</b> avec.",
+				"comment":""
+			},
+			{
+				"feature":"Thèse arcanique", 
+				"hierarchy":1,
+				"choice":[
+					"Bâton nexus",
+					"Expérimentation mutamagique",
+					"Harmonisation avec le familier améliorée",
+					"Mélange de sorts",
+					"Substitution de sort"
+				],
+				"type":"choice",
+				"description":"Vous choisissez une thèse arcanique, elle vous accorde des capacités particulières. En fonction de la thèse, elle vous accorde des effets supplémentaires aux niveaux supplémentaires.",
+				"comment":""
+			},
+			{
+				"feature":"Ecole arcanique", 
+				"hierarchy":1,
+				"choice":[
+					"École de la frontière",
+					"École de la magie de combat",
+					"École de forme protéenne",
+					"École de magie civique",
+					"École des lettres",
+					"École du mentalisme",
+					"École de la théorie magique unifiée"
+				],
+				"type":"choice",
+				"description":"Vous choisissez une école arcanique, elle vous accorde des sorts supplémentaires de chaque rang (hors école de la théorie magique unifiée), des emplacements de sorts supplémentaires et des sorts d'école.",
+				"comment":""
+			},
+				{
+					"feature":"Emplacements de sorts", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vous obtenez un emplacement de sort mineur spécialisé puis un emplacement supplémentaire de rang supérieur pour chaque rang que vous pouvez utiliser. Ces emplacements ne peuvent être utilisés que pour préparer des sorts de votre école.",
+					"comment":""
+				},
+				{
+					"feature":"Sorts d'école initial", 
+					"hierarchy":1,
+					"choice":[],
+					"type":"info",
+					"description":"Vous obtenez le sort focalisé initial de votre école, que vous pouvez utiliser avec un 1PF.<br> Votre total de PF est égal au nombre de sorts non-mineurs de focalisation que vous avez (maximum 3). Vous pouvez récupérer un PF en vous Refocalisant pendant 10 minutes.",
+					"comment":""
+				}
+		],
+		"2":[
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"spell 3 1",
+				"tradition":"arcane",
+				"spellId":"0",
+				"description":"Vous obtenez un emplacement de sort supplémentaire de niveau 1. Vous apprenez des sorts du rang que vous voulez.",
+				"comment":""
+			}
+		],
+		"3":[
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"spell 4 2",
+				"tradition":"arcane",
+				"spellId":"0",
+				"description":"Vous obtenez 2 emplacements de sort de niveau 2. Vous apprenez des sorts du rang que vous voulez.",
+				"comment":""
+			},
+			{
+				"feature":"Ecole arcanique", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez un sort de rang 2 de votre école ainsi qu'un emplacement de sorts spécialisé supplémentaire de rang 2.",
+				"comment":""
+			}
+		],
+		"4":[
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"spell 3 2",
+				"tradition":"arcane",
+				"spellId":"0",
+				"description":"Vous obtenez un emplacement de sort supplémentaire de niveau 2. Vous apprenez des sorts du rang que vous voulez.",
+				"comment":""
+			}
+		],
+		"5":[
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"spell 4 3",
+				"tradition":"arcane",
+				"spellId":"0",
+				"description":"Vous obtenez 2 emplacements de sort de niveau 3. Vous apprenez des sorts du rang que vous voulez.",
+				"comment":""
+			},
+			{
+				"feature":"Ecole arcanique", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez un sort de rang 3 de votre école ainsi qu'un emplacement de sorts spécialisé supplémentaire de rang 3.",
+				"comment":""
+			},
+			{
+				"feature":"Expertise en réflexes", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b>Réflexes: Qualifié > Expert</b>",
+				"comment":""
+			},
+			{
+				"feature":"Incantateur expert", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b>Jets d'attaque et DD de sort : Qualifié > Expert</b>",
+				"comment":""
+			}
+		]
+	},
+	"Magus":{
+		"1":[
+			{
+				"feature":"Incantation arcanique", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Le matin, vous pouvez préparer des sorts de la tradition <b>Arcanique</b> que vous possédez dans votre grimoire. Vous en préparez un par emplacement de sort disponible, ainsi que cinq sorts mineurs. Vous débutez avec 1 emplacement de sort.",
+				"comment":""
+			},
+				{
+					"feature":"Sorts mineurs (tours de magie)", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vous pouvez lancer des sorts mineurs préparés sans emplacements de sort, son rang est élevé automatiquement au rang de sort le plus haut que vous pouvez lancer.",
+					"comment":""
+				},
+				{
+					"feature":"Le grimoire", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vous débutez avec un grimoire d'une valeur de 10pa max gratuitement. Il contient 8 sorts mineurs et 4 sorts arcaniques de rang 1 au choix",
+					"comment":""
+				},
+				{
+					"feature":"Nouveaux sorts", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"spell 4 1",
+					"tradition":"arcane",
+					"spellId":"0",
+					"description":"",
+					"comment":""
+				},
+				{
+					"feature":"Nouveaux sorts mineurs", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"spell 8 0",
+					"tradition":"arcane",
+					"spellId":"1",
+					"description":"",
+					"comment":""
+				},
+			{
+				"feature":"Frappe de sort", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez l'action <b>Frappe de sort</b>.",
+				"comment":""
+			},
+				{
+					"feature":"Particularités de la Frappe de sort", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vos frappes de sort modifient les propriétés des sorts selons certains critères (Cible(s), Allonge, Effets,...). Le détail des effets est décrit dans le descriptif de classe du Magus.",
+					"comment":""
+				},
+			{
+				"feature":"Cascade arcanique", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous gagnez l'action <b>Cascade arcanique</b>.",
+				"comment":""
+			},
+			{
+				"feature":"Etudes hybridées", 
+				"hierarchy":1,
+				"choice":[
+					"Acier inexorable",
+					"Arbre tordu",
+					"Firmament distant",
+					"Foulard déroulant",
+					"Ombre ricanante",
+					"Portée des étoiles",
+					"Targe étincelante"
+				],
+				"type":"choice",
+				"description":"Choisissez votre étude hybridée, elle vous confère une capacité spéciale et un sort de confluence.",
+				"comment":""
+			},
+				{
+					"feature":"Sorts de confluence", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Votre étude hybridée vous octroie un sort de confluence focalisé, que vous pouvez utiliser avec un 1PF.<br> Votre total de PF est égal au nombre de sorts non-mineurs de focalisation que vous avez (maximum 3). Vous pouvez récupérer un PF en vous Refocalisant pendant 10 minutes.",
+					"comment":""
+				}
+		],
+		"2":[
+			{
+				"feature":"Emplacements de sort", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez 1 emplacement de sorts de niveau 1.",
+				"comment":""
+			},
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"spell 2 1",
+				"tradition":"arcane",
+				"spellId":"0",
+				"description":"",
+				"comment":""
+			}
+		],
+		"3":[
+			{
+				"feature":"Emplacements de sort", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez 1 emplacement de sorts de niveau 2.",
+				"comment":""
+			},
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"spell 2 2",
+				"tradition":"arcane",
+				"spellId":"0",
+				"description":"",
+				"comment":""
+			}
+		],
+		"4":[
+			{
+				"feature":"Emplacements de sort", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez 1 emplacement de sorts de niveau 2.",
+				"comment":""
+			},
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"spell 2 2",
+				"tradition":"arcane",
+				"spellId":"0",
+				"description":"",
+				"comment":""
+			}
+		],
+		"5":[
+			{
+				"feature":"Emplacements de sort", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez 2 emplacements de sorts de niveau 2. Vous perdez vos emplacements de niveau 1.",
+				"comment":""
+			},
+			{
+				"feature":"Réflexes fulgurants", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b>Réflexes: Qualifié > Expert</b>",
+				"comment":""
+			},
+			{
+				"feature":"Expertise avec les armes", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b> Armes simples, de guerre, mains nues: Qualifié > Expert </b>.",
+				"comment":""
+			},
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"spell 2 3",
+				"tradition":"arcane",
+				"spellId":"0",
+				"description":"",
+				"comment":""
+			}
+		]
+	},
+	"Moine":{
+		"1":[
+			{
+				"feature":"Déluge de coups", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez l'action Déluge de coups.",
+				"comment":""
+			},
+			{
+				"feature":"Poings puissants", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vos dés de dégâts d'armes à mains nues passent à 1d6 et vos frappes à mains nues ignorent le trait non-léthal.",
+				"comment":""
+			}
+		],
+		"2":[
+		],
+		"3":[
+			{
+				"feature":"Déplacement extraordinaire", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez un bonus de statut de +3m de vitesse lorsque vous ne portez pas d'armure..",
+				"comment":"7,11,15,19"
+			},
+			{
+				"feature":"Frappes mystiques", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vos attaques à mains nues sont considérées comme magiques.",
+				"comment":""
+			}
+		],
+		"4":[
+		],
+		"5":[
+			{
+				"feature":"Expertise en perception", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b>Perception: Qualifié > Expert</b>",
+				"comment":""
+			},
+			{
+				"feature":"Frappes expertes", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b> Armes simples, mains nues: Qualifié > Expert </b><br> Vous obtenez les effets critiques des armes simples et à mains nues.",
+				"comment":""
+			}
+		]
+	},
+
+
+	"Prêtre":{
+		"1":[
+			{
+				"feature":"Incantation de prêtre", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Le matin, vous pouvez préparer des sorts de la tradition <b>Divine</b> qui sont incluts dans la liste votre dinivité, les sorts courants Divins, et les sorts appris par l'activité Apprendre un Sort. Vous en préparez un par emplacement de sort disponible, ainsi que cinq sorts mineurs.",
+				"comment":""
+			},
+				{
+					"feature":"Sorts mineurs (tours de magie)", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vous pouvez lancer des sorts mineurs préparés sans emplacements de sort, son rang est élevé automatiquement au rang de sort le plus haut que vous pouvez lancer.",
+					"comment":""
+				},
+				{
+					"feature":"Nouveaux sorts", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vous obtenez 2 emplacements de sorts de niveau 1.",
+					"comment":""
+				},
+				{
+					"feature":"Nouveaux sorts mineurs", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"info",
+					"description":"Vous obtenez 5 emplacements de sorts mineurs.",
+					"comment":""
+				},
+			{
+				"feature":"Divinité",
+				"hierarchy":1,
+				"choice":[],
+				"type":"comment",
+				"description":"Choisissez une divinité, elle vous accorde une compétence, une maitrise d'arme de prédilection (même si elle n'est pas courante). Elle ajoute également des sorts que vous pouvez ajouter à votre répertoire.",
+				"comment":""
+			},
+				{
+					"feature":"Sanctification",
+					"hierarchy":2,
+					"choice":[
+						"Saint",
+						"Impie"
+					],
+					"type":"choice",
+					"description":"Votre divinité vous donne le trait saint ou impie, qui est référencé dans d'autres capacités. Obtenir le trait opposé de n'importe quelle manière retire le trait précédent.",
+					"comment":""
+				},
+				{
+					"feature":"Anathème", 
+					"hierarchy":2,
+					"choice":[],
+					"type":"comment",
+					"description":"Si vous accomplissez trop d'actes anathèmes à votre divinité (comme lancer des sorts Impie lorsque lié au trait Saint par exemple), vous perdez temporairement les capacités magiques en lien avec votre divinité.",
+					"comment":""
+				},
+			{
+				"feature":"Doctrine",
+				"hierarchy":1,
+				"choice":[
+					"Prêtre cloitré",
+					"Prêtre combattant"
+				],
+				"type":"choice",
+				"description":"Choisissez une doctrine, elle vous accorde régulièrement des avantages.",
+				"comment":""
+			},
+			{
+				"feature":"Source divine", 
+				"hierarchy":1,
+				"choice":[
+					"Guérison",
+					"Mise à mal"
+				],
+				"type":"choice",
+				"description":"Vous préparez quatre emplacements de sort supplémentaires chaque jour du rang le plus élevé que vous possédez. Ces emplacements ne peuvent que contenir les sorts Guérison ou Mise à mal en accord avec votre divinité.",
+				"comment":"5,15"
+			}
+		],
+		"2":[
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez 1 emplacement de sorts de niveau 1.",
+				"comment":""
+			}
+		],
+		"3":[
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez 2 emplacement de sorts de niveau 2.",
+				"comment":""
+			},
+			{
+				"feature":"Deuxième doctrine",
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Votre doctrine vous accorde son effet de deuxième doctrine.",
+				"comment":""
+			}
+		],
+		"4":[
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez 1 emplacement de sorts de niveau 2.",
+				"comment":""
+			}
+		],
+		"5":[
+			{
+				"feature":"Source divine +", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous préparez un cinquième emplacement de sort pour votre sort de Source divine.",
+				"comment":"5,15"
+			},
+			{
+				"feature":"Nouveaux sorts", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez 2 emplacement de sorts de niveau 3.",
+				"comment":""
+			},
+			{
+				"feature":"Expertise en perception", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b>Perception: Qualifié > Expert</b>",
+				"comment":""
+			}
+		]
+	},
+
+
+
+
+	"Rôdeur":{
+		"1":[
+			{
+				"feature":"Chasser une proie", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous gagnez l'action <b>Chasser une proie</b>",
+				"comment":""
+			},
+			{
+				"feature":"Spécialité du chasseur", 
+				"hierarchy":1,
+				"choice":[
+					"Déluge",
+					"Précision",
+					"Ruse"
+				],
+				"type":"choice",
+				"description":"Choisissez une spécialité de chasseur, elle vous octroie un avantage supplémentaire lorsque vous chassez une proie.",
+				"comment":""
+			}
+		],
+		"2":[
+		],
+		"3":[
+			{
+				"feature":"Expert en volonté", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b>Volonté: Maitrise > Expert</b><br>.",
+				"comment":""
+			}
+		],
+		"4":[
+		],
+		"5":[
+			{
+				"feature":"Expertise avec les armes de rôdeur", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b> Armes simples, de guerre, mains nues: Qualifié > Expert </b><br> Vous obtenez les effets critiques des armes lorsque vous attaquez votre proie.",
+				"comment":""
+			},
+			{
+				"feature":"Parcours sans traces", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous obtenez les avantages de l'action <b>Dissimuler des traces</b> sur des terrains naturels en vous déplaçant à votre vitesse habituelle.",
+				"comment":""
+			}
+		]
+	},
+	"Roublard":{
+		"1":[
+			{
+				"feature":"Trafic de roublard", 
+				"hierarchy":1,
+				"choice":[
+					"Cerveau",
+					"Mystificateur",
+					"Scélérat",
+					"Voyou",
+					"Voleur"
+				],
+				"type":"choice",
+				"description":"Choisissez un trafic de roublard, il vous accorde une aptitude supplémentaire.",
+				"comment":""
+			},
+			{
+				"feature":"Attaque sournoise", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Si vous frappez une créature Prise au dépourvu avec une arme de CàC (ou mains nues) agile ou de finesse ou une arme à distance, vous lui infligez 1d6 dégâts de précision supplémentaire.",
+				"comment":"5,11,17"
+			},
+			{
+				"feature":"Attaque surprise", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Au premier round de chaque combat, les créatures qui n'ont pas agi et que vous attaquées sont Prises au dépourvu (Si votre initiative s'est basée sur la Duperie ou Discrétion).",
+				"comment":""
+			}
+		],
+		"2":[
+			
+		],
+		"3":[
+			{
+				"feature":"Refus d'avantage", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Vous n'êtes pas Pris au dépourvu par les créatures cachées, non détectées ou qui vous prend en tenaille si elles sont de niveau inférieur ou égal au votre.",
+				"comment":""
+			}
+		],
+		"4":[
+		],
+		"5":[
+			{
+				"feature":"Attaque sournoise +", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"Augmentez les dégâts de Frappe sournoise de 1d6.",
+				"comment":"5,11,17"
+			},
+			{
+				"feature":"Astuces martiales", 
+				"hierarchy":1,
+				"choice":[],
+				"type":"info",
+				"description":"<b> Armes simples, de guerre, mains nues: Qualifié > Expert </b><br> Vous obtenez les effets critiques des armes lorsque vous attaquez une créature Prise au dépourvu.",
+				"comment":""
+			}
+		]
+	},
+
+
+	"Sample":{
+		"1":[
+		],
+		"2":[
+		],
+		"3":[
+		],
+		"4":[
+		],
+		"5":[
+		]
+	}
+}

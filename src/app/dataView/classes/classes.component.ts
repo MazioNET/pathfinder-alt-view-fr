@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { JsonService } from '../json.service';
 import { NgForOf, NgIf, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-classes',
@@ -19,7 +20,7 @@ private rawData : any = null;
   public textFilter : string = "";
 
 
-  constructor(private _js: JsonService){
+  constructor(private _js: JsonService, public router: Router){
     this.downloadJson();
   }
 
@@ -167,5 +168,28 @@ private rawData : any = null;
     });
   }
   
+  //-----------------
+
+  editSelected : any = [];
+  public EDIT_MODE = new URL(window.location.href).searchParams.get('edit');
+  public EDIT_ID = new URL(window.location.href).searchParams.get('id');
+  toggleSelected(object){
+    console.log(this.editSelected);
+    console.log(object['_id'])
+    if(object['selected']){
+      object['selected'] = false;
+      this.editSelected = this.editSelected.filter((item) => { return item != ("" + object['_id'])});
+    }
+    else{
+      object['selected'] = true;
+      this.editSelected.push(object['_id']);
+    }
+    
+    console.log(this.editSelected)
+  }
+
+  confirm(){
+    this.router.navigate(['/builder'],{queryParams: {'return': this.editSelected , 'id': this.EDIT_ID}});
+  }
 }
 

@@ -62,6 +62,7 @@ export class AncestriesComponent {
         this.sortMode = "nom_asc";
         this.filterRawData();
         this.rawData = this.data;
+        console.log(this.data);
       });
       });
     });
@@ -136,10 +137,7 @@ export class AncestriesComponent {
   isElementDisplayed(element) : boolean{
     if(element["translations"] == null) return false;
     if(element["translations"]["fr"] == null) return false;
-    if(element["type"] == "armor") return false;
-    if(element["type"] == "weapon") return false;
-    if(element["level"] > 0) return false;
-    if(!element["publication"] || element["publication"].includes("Starfinder")) return false;
+    if(element["publication"] && element["publication"].includes("Starfinder")) return false;
     return true;
   }
 
@@ -207,8 +205,8 @@ export class AncestriesComponent {
   public EDIT_MODE = new URL(window.location.href).searchParams.get('edit');
   public EDIT_ID = new URL(window.location.href).searchParams.get('id');
   toggleSelected(object){
-    console.log(this.editSelected);
-    console.log(object['_id'])
+    //console.log(this.editSelected);
+    //console.log(object['_id'])
     if(object['selected']){
       object['selected'] = false;
       this.editSelected = this.editSelected.filter((item) => { return item != ("" + object['_id'])});
@@ -218,7 +216,7 @@ export class AncestriesComponent {
       this.editSelected.push(object['_id']);
     }
     
-    console.log(this.editSelected)
+    //console.log(this.editSelected)
   }
 
   confirm(){

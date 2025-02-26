@@ -9,6 +9,8 @@ import { FeatAncestryComponent } from './dataView/feat-ancestry/feat-ancestry.co
 import { BackgroundComponent } from './dataView/background/background.component';
 import { ClassesComponent } from './dataView/classes/classes.component';
 import { FeatClassComponent } from './dataView/feat-class/feat-class.component';
+import { FeatGeneralComponent } from './dataView/feat-general/feat-general.component';
+import { FeatSkillsComponent } from './dataView/feat-skills/feat-skills.component';
 
 export const routes: Routes = [
 
@@ -19,7 +21,9 @@ export const routes: Routes = [
     {path: "backgrounds", component: BackgroundComponent},
 
     {path: "classes", component: ClassesComponent},
+    {path: "feats/general", component: FeatGeneralComponent},
     {path: "feats/classes", component: FeatClassComponent},
+    {path: "feats/skills", component: FeatSkillsComponent},
     {path: "spells", component: SpellsComponent},
 
     {path: "weapons", component: WeaponsComponent},

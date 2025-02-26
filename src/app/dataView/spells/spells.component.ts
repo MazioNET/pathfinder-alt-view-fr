@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { JsonService } from '../json.service';
 import { NgForOf, NgIf, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-spells',
@@ -18,16 +19,27 @@ export class SpellsComponent {
   public sortMode : string = "";
   public textFilter : string = "";
   public minFilter : any = 1;
-  public maxFilter : any = 10;
 
-  public filterSor : boolean = true;
-  public filterFoc : boolean = true;
-  public filterMin : boolean = true;
+  public maxFilter : any = (new URL(window.location.href).searchParams.get('id')?.includes('spell') ?
+    new URL(window.location.href).searchParams.get('id')?.split('-')[2] :
+      10
+    );
+  public filterSor : boolean = (!new URL(window.location.href).searchParams.get('id')?.includes('spell')
+                                || new URL(window.location.href).searchParams.get('id')?.split('-')[2] != '0'
+                                  ?true : false)
+  public filterFoc : boolean = (new URL(window.location.href).searchParams.get('id')?.includes('spell') 
+                                ?false:true);
+  public filterMin : boolean = (!new URL(window.location.href).searchParams.get('id')?.includes('spell')
+                              || new URL(window.location.href).searchParams.get('id')?.split('-')[2] == '0'
+                                ?true : false)
+  public tradFilter :string = (new URL(window.location.href).searchParams.get('id')?.includes('spell') ?
+  new URL(window.location.href).searchParams.get('id')?.split('-')[4] + "":
+    ""
+  );
 
-  public tradFilter :string = "";
-
-  constructor(private _js: JsonService){
+  constructor(private _js: JsonService, public router: Router){
     this.downloadJson();
+    console.log(this.tradFilter);
   }
 
   goToLink(url: string){
@@ -214,4 +226,52 @@ export class SpellsComponent {
       
     });
   }
+
+    //-----------------
+
+    editSelected : any = [];
+    public EDIT_MODE = new URL(window.location.href).searchParams.get('edit');
+    public EDIT_ID = new URL(window.location.href).searchParams.get('id');
+
+    public EDIT_NB = (new URL(window.location.href).searchParams.get('id')?.includes('spell') ?
+    new URL(window.location.href).searchParams.get('id')?.split('-')[1] :
+      1
+    );
+
+    public EDIT_LVL = (new URL(window.location.href).searchParams.get('id')?.includes('spell') ?
+    new URL(window.location.href).searchParams.get('id')?.split('-')[2] :
+      -1
+    );
+
+    public EDIT_TRAD = (new URL(window.location.href).searchParams.get('id')?.includes('spell') ?
+    new URL(window.location.href).searchParams.get('id')?.split('-')[3] :
+      "null"
+    );
+
+    toggleSelected(object){
+      console.log(this.editSelected);
+      console.log(object['_id'])
+      if(object['selected']){
+        object['selected'] = false;
+        this.editSelected = this.editSelected.filter((item) => { return item != ("" + object['_id'])});
+      }
+      else{
+        object['selected'] = true;
+        this.editSelected.push(object['_id']);
+      }
+      
+      console.log(this.editSelected)
+    }
+  
+    srtingifySelection(){
+      let res = '';
+      this.editSelected.forEach(element => {
+        res += element+'-';
+      });
+      return res;
+    }
+
+    confirm(){
+      this.router.navigate(['/builder'],{queryParams: {'return': this.srtingifySelection() , 'id': this.EDIT_ID}});
+    }
 }

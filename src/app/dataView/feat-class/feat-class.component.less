@@ -38,3 +38,169 @@ select{
 .placeholder{
     color: #ffc4f7;
 }
+
+
+.input-label{
+    margin-top: 12px;
+    margin-left: 5px;
+    font-size: 1em;
+    font-family: sans-serif;
+}
+
+.input-number{
+    text-align: center;
+    width: 35px;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 0;
+}
+
+
+.toggle{
+    background-color: #7d4976;
+    border: #b872ab solid 1.5px;
+}
+
+.off{
+    background-color: #482a4374;
+    color: #dc93d0a3;
+}
+
+.toggle:hover{
+    background-color: #c071af7a;
+}
+
+.off:hover{
+    background-color: #7d496f;
+}
+
+//ACTUAL CSS
+
+
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    overflow-y: scroll;
+}
+
+.data-table thead tr {
+    background-color: #27445D;
+    color: #ffffff;
+    text-align: left;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px 15px;
+}
+
+.data-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    background-color: #ffffff;
+}
+
+.data-table-even {
+    background-color: #f3f3f3 !important;
+}
+
+.data-table tbody tr:last-of-type {
+    border-bottom: 2px solid #db6fb5;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 400px;
+    background-color: #27445D;
+    color: #fff;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: small;
+    border-radius: 6px;
+    padding: 0px 10px;
+
+    top: 100%;
+    left: 50%;
+    margin-left: 0px;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+  
+.tooltip .tooltip-smaller {
+    width: auto;
+}
+
+.tooltip .tooltip-left {
+    top: 100%;
+  right: 50%;
+  left: auto;
+}
+
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+strong {
+    visibility: hidden !important;
+}
+
+.trait{
+    background-color: #8e507d;
+    color: #fff;
+    display: inline-block;
+    margin-top: 5px;
+    margin-right: 4px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: smaller;
+}
+
+.trait-alt{
+    background-color: #d06fc7;
+}
+
+.trait-alt2{
+    background-color: #756073;
+}
+
+.damage-dice{
+    font-size: 1.1em;
+}
+
+.damage-type-icon{
+    width: 15px;
+}
+
+.price{
+    font-size: smaller;
+    opacity: 0.5;
+    padding-right: 3px;
+}
+
+.type-list{
+    width: 90px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.action-icon{
+    font-family: Pathfinder2eActions;
+}
+
+.ancestry-list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 200px;
+}

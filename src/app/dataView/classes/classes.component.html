@@ -1,5 +1,13 @@
 <div class="background">
     <div class="filterbox">
+        <!-- EDIT MODE ONLY -->
+        <button [ngClass]="{'edit-unable':(editSelected.length) != 1}" 
+            *ngIf="EDIT_MODE"
+            [disabled]="(editSelected.length) != 1" 
+            (click)="confirm()" class="toggle toggle_edit">
+            Valider ({{editSelected.length}}/1)
+        </button>
+        <!-- END OF EDIT MODE ONLY -->
         <input [(ngModel)]="textFilter" (keyup.enter)="dynamicFilter()" class="input" placeholder="Filtrer..." type="text"/>
         <img (click)="dynamicFilter()" class="filter-icon" src='assets/filter-icon.png'>
     </div>
@@ -7,6 +15,8 @@
     <table class="data-table">
         <thead>
             <tr>
+                <th *ngIf="EDIT_MODE">
+                </th>
                 <th>
                     <b (click)="changeSortMode('nom')">Nom </b>
                     <b *ngIf="sortMode == 'nom_asc'">↑</b>
@@ -29,6 +39,10 @@
         </thead>
         <tbody>
             <tr [ngClass]="{'hidden': object['hidden'], 'data-table-even': object['grey']} "*ngFor="let object of data">
+                <td *ngIf="EDIT_MODE"  (click)="toggleSelected(object)">
+                    <div *ngIf="!object['selected']" class="edit-checkbox"></div>
+                    <div *ngIf="object['selected']" class="edit-checkbox edit-selected">✔</div>
+                </td>
                 <td>  
                     <div class="class-column">
                         <img class="class-icon" src='{{"assets/classes/"+ object["name"].toLowerCase() +".png"}}'>

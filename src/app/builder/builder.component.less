@@ -1,3 +1,7 @@
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
 ::ng-deep{
     .grd{
         background-color: #ec7272 !important;
@@ -5,6 +9,13 @@
     }
 
 }
+
+.inv-sheet{
+    width: 100vw;
+    height: 0;
+    opacity: 0;
+}
+
 
 .background{
     display: flex;
@@ -15,6 +26,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     height: calc(100% - 40px);
+    width: 100%;
 }
 
 .filterbox{
@@ -42,6 +54,7 @@
     background-color: #7d4949;
     border: #b87272 solid 1.5px;
     width: fit-content;
+    height: 30px;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -84,9 +97,10 @@
     background-color: #b17f7f;
 }
 
+
+
 .character-section{
     min-height: 20%;
-    flex-grow: 2;
 
     background-color: white;
     border: 1.5px solid #d19d9d;
@@ -101,10 +115,16 @@
 }
 
 
+
 @media (min-width:950px) {
-    .character-section{
-        max-width: 50%;
-    }   
+
+    .character-editor{
+        width: calc(55% - 35px);
+    }
+    
+    .character-viewer{
+        width: calc(45% - 0px);
+    }
 }
 
 //============================================================
@@ -112,7 +132,6 @@
 //============================================================
 
 .editor-section{
-
     .editor-section-title{
         border-bottom: solid 2px #ac4c4c;
         font-weight: bold;
@@ -127,15 +146,34 @@
         margin-left: 15px;
         margin-top: 10px;
         margin-bottom: 20px;
-        .editor-choice-title{
-            font-weight: bold;
-        }
+        
     }
+    .editor-choice-title{
+        font-weight: bold;
+
+        .editor-subtext{
+            font-weight: normal !important;
+            color: black !important;
+        }
+    }  
 
     .editor-edit{
         margin: 0px;
         margin-left: 3px;
     }
+
+    .feature-1{
+        font-weight: bold;
+        color: #ac4c4c;
+    }
+
+    .sub-editor, .feature-2{
+        font-weight: normal !important;
+        font-size: 0.9em;
+        margin-left: 20px;
+        margin-top: -10px;
+    }
+
 }
 
 //============================================================
@@ -143,9 +181,97 @@
 //============================================================
 
 .character-viewer{
+
+    .sheet-section-title{
+        border-bottom: solid 2px #ac4c4c;
+        font-weight: bold;
+        color: #ac4c4c;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
     .character-name{
-    font-family: sans-serif;
-    font-size: 1.5em;
+        font-family: sans-serif;
+        font-size: 1.5em;
+        width: 100%;
+    }
+
+    .sheet-row{
+        margin-top: 5px;
+        margin-bottom: 20px;
+        .sheet-row-stats-img{
+            width: fit-content;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+
+            .ability-icon{
+                position: relative;
+                width: 95%;
+                max-width: 100px;
+                padding: 2px;
+
+                .ability-img{
+                    width: 100%;
+                }
+
+                .ability-name{
+                    position: absolute;
+                    width: 100%;
+                    left: 0px;
+                    top: 9% + 2px;
+                    z-index: 2;
+
+                    font-size: 0.7em;
+                    text-align: center;
+                    font-weight: bold;
+                    
+                }
+
+                .ability-val{
+                    position: absolute;
+                    width: 100%;
+                    left: 0px;
+                    top: 25% + 2px;
+                    z-index: 2;
+
+                    font-size: 3em;
+                    text-align: center;
+                }
+
+                @media (min-width:950px) {
+                    .ability-name{
+                        top: 9% + 2px;
+                        font-size: 0.55em;
+                    }
+                    .ability-val{
+                        top: 25% - 0px;
+                        font-size: 2.5em;
+                    }
+                }
+                @media (min-width:1300px) {
+                    .ability-name{
+                        top: 9% + 2px;
+                        font-size: 0.7em;
+                    }
+                    .ability-val{
+                        top: 25% + 2px;
+                        font-size: 3em;
+                    }
+                }
+            }
+        }
+    }
+
+    .sheet-qualif{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .sheet-qualif-column{
+        width: 50%;
     }
 }
 

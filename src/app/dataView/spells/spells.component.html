@@ -1,9 +1,17 @@
 <div class="background">
     <div class="filterbox">
+        <!-- EDIT MODE ONLY -->
+        <button [ngClass]="{'edit-unable':(editSelected.length) != EDIT_NB}" 
+            *ngIf="EDIT_MODE"
+            [disabled]="(editSelected.length) != EDIT_NB" 
+            (click)="confirm()" class="toggle toggle_edit">
+            Valider ({{editSelected.length}}/{{EDIT_NB}})
+        </button>
+        <!-- END OF EDIT MODE ONLY -->
         <input [(ngModel)]="textFilter" (keyup.enter)="dynamicFilter()" class="input" placeholder="Filtrer..." type="text"/>
         <img (click)="dynamicFilter()" class="filter-icon" src='assets/filter-icon.png'>
         
-        <select (change)="dynamicFilter()" [(ngModel)]="tradFilter" class="input input-select"  name="pets" id="pet-select">
+        <select [disabled]="EDIT_TRAD != 'null'" [ngClass]="{'edit-unable':EDIT_LVL != -1}"  (change)="dynamicFilter()" [(ngModel)]="tradFilter" class="input input-select"  name="pets" id="pet-select">
             <option class="placeholder" value=""><b>Tradition</b></option>
             <option class="option" value="special">Inné (classe)</option>
             <option class="option" value="arcane">Arcane</option>
@@ -13,20 +21,22 @@
           </select>  
 
         <div style="width: 25px;"></div>
-        <button (click)="filterSor = !filterSor; dynamicFilter()" [ngClass]="{'off': !filterSor}" class="toggle">Sorts</button>
-        <button (click)="filterMin = !filterMin; dynamicFilter()" [ngClass]="{'off': !filterMin}" class="toggle">Mineur</button>
-        <button (click)="filterFoc = !filterFoc; dynamicFilter()" [ngClass]="{'off': !filterFoc}" class="toggle">Focalisé</button>
+        <button (click)="filterSor = !filterSor; dynamicFilter()" [ngClass]="{'off': !filterSor}" class="toggle" [disabled]="EDIT_LVL != -1" [ngClass]="{'edit-unable':EDIT_LVL != -1}">Sorts</button>
+        <button (click)="filterMin = !filterMin; dynamicFilter()" [ngClass]="{'off': !filterMin}" class="toggle" [disabled]="EDIT_LVL != -1" [ngClass]="{'edit-unable':EDIT_LVL != -1}">Mineur</button>
+        <button (click)="filterFoc = !filterFoc; dynamicFilter()" [ngClass]="{'off': !filterFoc}" class="toggle" [disabled]="EDIT_LVL != -1" [ngClass]="{'edit-unable':EDIT_LVL != -1}">Focalisé</button>
         <div style="width: 5px;"></div>
         <span class="input-label">Niveaux:</span>
-        <input [(ngModel)]="minFilter"  (keyup.enter)="dynamicFilter()" class=" input input-number" placeholder="min" type="number"/>
+        <input [(ngModel)]="minFilter"  (keyup.enter)="dynamicFilter()" class=" input input-number" [disabled]="EDIT_LVL != -1" [ngClass]="{'edit-unable':EDIT_LVL != -1}" placeholder="min" type="number"/>
         <span class="input-label">à</span>
-        <input [(ngModel)]="maxFilter" (keyup.enter)="dynamicFilter()" class=" input input-number" placeholder="max" type="number"/>
+        <input [(ngModel)]="maxFilter" (keyup.enter)="dynamicFilter()" class=" input input-number" [disabled]="EDIT_LVL != -1" [ngClass]="{'edit-unable':EDIT_LVL != -1}" placeholder="max" type="number"/>
 
     </div>
 
     <table class="data-table">
         <thead>
             <tr>
+                <th *ngIf="EDIT_MODE">
+                </th>
                 <th>
                     <b (click)="changeSortMode('nom')">Nom </b>
                     <b *ngIf="sortMode == 'nom_asc'">↑</b>
@@ -44,6 +54,10 @@
         </thead>
         <tbody>
             <tr [ngClass]="{'hidden': object['hidden'], 'data-table-even': object['grey']} "*ngFor="let object of data">
+                <td *ngIf="EDIT_MODE"  (click)="toggleSelected(object)">
+                    <div *ngIf="!object['selected']" class="edit-checkbox"></div>
+                    <div *ngIf="object['selected']" class="edit-checkbox edit-selected">✔</div>
+                </td>
                 <td>   
                     <div class="tooltip">
                         <div class="name">

@@ -1,16 +1,28 @@
+<input 
+    hidden 
+    accept=".json"
+    type="file" 
+    #uploader
+    (change)="loadFile($event)"
+/>
+
 <div class="filterbox">
     <input [(ngModel)]="chara['name']" class="input" placeholder="Nom du personnage" type="text"/>
+    <span  style="margin-top: 12px; margin-left: 35px;">Niveau</span> 
+    <input [(ngModel)]="chara['level']" class="input input-number" placeholder="0" style="width: 30px" type="number"/>
+        
     <span class="filler"></span>
     <button (click)="newLocal()" class="toggle">Nouveau</button>
-    <button class="toggle">Charger</button>
-    <button (click)="saveLocal()" class="toggle">Sauvegarder</button>
+    <button (click)="uploader.click()" class="toggle">Charger</button>
+    <a [href]="saveFile()" download="{{chara['name'] + '_' + chara['_id'] + '.json'}}"><button class="toggle">Exporter</button></a>
 </div>
 <div class="background">
     <div class="character-section character-editor">
+        <div class="inv-sheet">DEBUG</div>
+
+        <!-- SECTION ORIGINE -->
         <div class="editor-section">
-            <div class="editor-section-title">
-                Origine
-            </div>
+            <div class="editor-section-title"> Origine </div>
 
             <div class="editor-section-content">
                 <div class="editor-choice"><!-- Ascendance -->
@@ -37,12 +49,29 @@
                             <option *ngFor="let item of chara['ascendance']['flaws']['0']" class="" value="{{ATTRIBUTS[item]}}"><b>{{ATTRIBUTS[item]}}</b></option>
                         </select>
                         <br><br>
+
+                        <!-- Ascendance: Don Niveau 1-->
+                        <div *ngIf="chara['ascendance'] && chara['ascendance']['translations']" style="margin-bottom: 20px;"><!-- historique -->
+                            <span class="editor-choice-title">Don d'ascendance </span>
+                            <div (click)="editAscFeats('feat_ascendance-1')"  class="trait editor-edit"><img style="width: 9px;" src='assets/edit.png'></div>  
+                            <br><div class="edit-subtext">Niveau 1</div>
+                            <span *ngIf="chara['ascendance-dons']['1'] && chara['ascendance-dons']['1']['translations']" class="trait trait-alt2 editor-edit">
+                                {{chara['ascendance-dons']['1']['translations']['fr']['name']}} 
+                                <img style="width: 9px;" src='assets/link.png'
+                                (click)="goToLink('https://pf2e.pathfinder-fr.org/feats/'+chara['ascendance-dons']['1']['_id'])"
+                                >
+                            </span>
+                            <span *ngIf="!chara['ascendance-dons']['1']" class="trait trait-alt2 editor-edit" style="background-color: #9e9e9e;">
+                                -- Choisissez votre don depuis l'icone <img style="width: 9px;" src='assets/edit.png'> --
+                            </span>
+                        </div>
+
+
                         <span class="editor-choice-title">Héritage: </span>
                         <select [(ngModel)]="chara['heritage']">
                             <option *ngFor="let item of chara['ascendance']['heritages']" [ngValue]="item['translations']['fr']['name']"><b>{{item['translations']['fr']['name']}}</b></option>
                         </select>
                         <br><div class="edit-subtext" [innerHTML]="getCurrentHeritageEffect()"></div>
-                        
                     </div>
                 </div>
                 
@@ -52,7 +81,7 @@
                     <div *ngIf="chara['historique'] && chara['historique']['translations']" (click)="goToLink('https://pf2e.pathfinder-fr.org/backgrounds/'+chara['historique']['_id'])"  class="trait trait-alt2 editor-edit"><img style="width: 9px;" src='assets/link.png'></div>  
                     <div (click)="editHistorique()"  class="trait editor-edit"><img style="width: 9px;" src='assets/edit.png'></div>  
                 
-                    <div *ngIf="chara['historique'] && chara['historique']['translations']" class="editor-choice"><!-- historique -->
+                    <div *ngIf="chara['historique'] && chara['historique']['translations']" style="margin-top: 5px;" class="editor-choice feature-2"><!-- historique -->
                         <span class="editor-choice-title">Choix de bonus d'attributs: </span>
                         <select *ngIf="chara['historique']['boosts']['0']" [(ngModel)]="chara['historique-attr-boost'][0]">
                             <option *ngFor="let item of chara['historique']['boosts']['0']" class="" value="{{ATTRIBUTS[item]}}"><b>{{ATTRIBUTS[item]}}</b></option>
@@ -65,40 +94,277 @@
                         </select>
                         <br><div class="edit-subtext"><i>⚠ Les bonus d'attributs ne peuvent pas être du même type</i></div>
                     </div>
+                    
+                    <div *ngIf="chara['historique'] && chara['historique']['translations']" class="editor-choice feature-2"><!-- historique -->
+                        <span class="editor-choice-title">Compétences: </span><span *ngFor="let item of chara['historique']['trainedSkills']">{{COMPETENCES[item]}}</span>
+                    </div>
+                    
+                    <div *ngIf="chara['historique'] && chara['historique']['translations']" class="editor-choice feature-2"><!-- historique -->
+                        <span class="editor-choice-title">Connaissance: </span> Connaissance en 
+                        <input [(ngModel)]="chara['historique-connaissance']" placeholder="connaissance obtenue" type="text"/>
+                        
+                        <br><div class="edit-subtext"><i>Reportez ici le type de connaissance que vous gagnez avec votre historique. (vide si aucun)</i></div>
+                    </div>
                 </div>
             </div>   
-
         </div>
 
+        <!-- SECTION CLASSE -->
         <div class="editor-section">
-            <div class="editor-section-title">
-                Niveau 1
-            </div>
+            <div class="editor-section-title"> Classe </div>
             <div class="editor-section-content">
+                <div class="editor-choice"><!-- Classe -->
+                    <span class="editor-choice-title">Classe: </span>
+                    <span class="editor-choice-input">{{(chara["classe"] && chara["classe"]["translations"] ? chara["classe"]["translations"]["fr"]["name"] : "Aucune classe choisie" )}}</span>
+                    <div *ngIf="chara['classe'] && chara['classe']['translations']" (click)="goToLink('https://pf2e.pathfinder-fr.org/classes/'+chara['classe']['_id'])"  class="trait trait-alt2 editor-edit"><img style="width: 9px;" src='assets/link.png'></div>  
+                    <div (click)="editClasse()"  class="trait editor-edit"><img style="width: 9px;" src='assets/edit.png'></div>  
                 
+                    <div *ngIf="chara['classe'] && chara['classe']['translations']" style="margin-top: 5px;" class="editor-choice feature-2"><!-- historique -->
+                        <span class="editor-choice-title">Bonus d'attributs principal: </span>
+                        <select [(ngModel)]="chara['classe-attr-boost'][0]">
+                            <option *ngFor="let item of chara['classe']['keyAbility']" value="{{ATTRIBUTS[item]}}"><b>{{ATTRIBUTS[item]}}</b></option>
+                        </select>
+                    </div>
+
+                    <div *ngIf="chara['classe'] && chara['classe']['translations']" class="editor-choice feature-2"><!-- historique -->
+                        <span class="editor-choice-title">Choix de bonus d'attributs: </span>
+                        <select [(ngModel)]="chara['classe-attr-boost'][1]">
+                            <option *ngFor="let item of ['str','dex','con','int','wis','cha']" value="{{ATTRIBUTS[item]}}"><b>{{ATTRIBUTS[item]}}</b></option>
+                        </select>
+                        <select [(ngModel)]="chara['classe-attr-boost'][2]">
+                            <option *ngFor="let item of ['str','dex','con','int','wis','cha']" value="{{ATTRIBUTS[item]}}"><b>{{ATTRIBUTS[item]}}</b></option>
+                        </select>
+                        <select [(ngModel)]="chara['classe-attr-boost'][3]">
+                            <option *ngFor="let item of ['str','dex','con','int','wis','cha']" value="{{ATTRIBUTS[item]}}"><b>{{ATTRIBUTS[item]}}</b></option>
+                        </select>
+                        <select [(ngModel)]="chara['classe-attr-boost'][4]">
+                            <option *ngFor="let item of ['str','dex','con','int','wis','cha']" value="{{ATTRIBUTS[item]}}"><b>{{ATTRIBUTS[item]}}</b></option>
+                        </select>
+                        <br><div class="edit-subtext"><i>⚠ Les bonus d'attributs ne peuvent pas être du même type</i></div>
+                    </div>
+
+                    <div *ngIf="chara['classe'] && chara['classe']['translations']" class="editor-choice feature-2"><!-- historique -->
+                        <span class="editor-choice-title">Compétence(s) de classe: </span><span *ngFor="let item of chara['classe']['trainedSkills']">{{COMPETENCES[item]}}</span>
+                    </div>
+
+                    <div *ngIf="chara['classe'] && chara['classe']['translations']" class="editor-choice feature-2"><!-- historique -->
+                        <span class="editor-choice-title">Compétences: </span>
+                        <select *ngFor="let n of forN(+chara['classe-competences'] + totalStat('Intelligence'))"  [(ngModel)]="chara['classe-competences-choix'][n]">
+                            <option *ngFor="let item of forJSON(COMPETENCES)" class="" [ngValue]="item"><b>{{COMPETENCES[item]}}</b></option>
+                        </select>
+                    </div>
+
+                </div>
             </div>            
         </div>
 
-        <div class="editor-section">
-            <div class="editor-section-title">
-                Inventaire
-            </div>
-            <div class="editor-section-content">
+        <!-- SECTION NIVEAU -->
+        <div class="editor-section" *ngFor="let N of forN(chara['level']+1)">
+            <div *ngIf="N > 0">
+                <div class="editor-section-title"> Niveau {{N}} </div>
                 
+                <!-- Features Automatisées -->
+                <div *ngIf="chara['classe-aptitudes'][N+'']" class="editor-section-content">    
+                    <!-- Pour chaque aptitude de montée de niveau -->
+                    <div [ngClass]="'feature-'+item['hierarchy']" *ngFor="let item of chara['classe-aptitudes'][N+'']">
+                        
+                        <!-- Cas d'un champ simple -->
+                        <div *ngIf="item['type'] == 'info' || item['type'].split(' ')[0] == 'increase'" class="editor-choice"><!-- historique -->
+                            <span class="editor-choice-title">{{item['feature']}} </span>
+                            <!-- Subtext-->
+                            <div [innerHTML]="'<br>'+item['description']" style="margin-top: -10px; color: black; font-weight: normal;" *ngIf="item['description'] && item['description'] !=''" class="edit-subtext"></div>
+                        </div>
+
+                        <!-- Cas d'un champ libre -->
+                        <div *ngIf="item['type'] == 'comment'" class="editor-choice"><!-- historique -->
+                            <span class="editor-choice-title">{{item['feature']}} </span>
+                            <!-- Subtext-->
+                            <div [innerHTML]="'<br>'+item['description']" style="margin-top: -10px; color: black; font-weight: normal;" *ngIf="item['description'] && item['description'] !=''" class="edit-subtext"></div>
+                            <textarea [(ngModel)]="item['comment']" rows="2" cols="60"></textarea>
+                        </div>
+
+                        <!-- Cas d'un choix -->
+                        <div *ngIf="item['type'] == 'choice'" class="editor-choice"><!-- historique -->
+                            <span class="editor-choice-title">{{item['feature']}}: </span>
+                            <select [(ngModel)]="item['comment']">
+                                <option *ngFor="let choice of item['choice']" value="{{choice}}"><b>{{choice}}</b></option>
+                            </select>
+                                <!-- Subtext-->
+                                <div [innerHTML]="'<br>'+item['description']" style="margin-top: -10px; color: black; font-weight: normal;" *ngIf="item['description'] && item['description'] !=''" class="edit-subtext"></div>
+                        </div>
+
+                        <!-- Cas d'un choix de sort -->
+                        <div *ngIf="item['type'].split(' ')[0] == 'spell'" class="editor-choice"><!-- historique -->
+                            <span class="editor-choice-title">{{item['feature']}} </span>
+                            <div (click)="editSpells(item)"  class="trait editor-edit"><img style="width: 9px;" src='assets/edit.png'></div>  
+                            <br>
+                            <!-- Subtext-->
+                            <div *ngIf="item['type'].split(' ')[2] == 0" class="edit-subtext">Sorts mineurs</div>
+                            <div *ngIf="item['type'].split(' ')[2] != 0" class="edit-subtext">Niveau {{item['type'].split(' ')[2]}}</div>
+                            <span *ngFor="let n of forN(item['type'].split(' ')[1])"> 
+                                <span *ngIf="item['spell-choix']" class="trait trait-alt2 editor-edit">
+                                    {{item['spell-choix'][n]['translations']['fr']['name']}} 
+                                    <img style="width: 9px;" src='assets/link.png'
+                                    (click)="goToLink('https://pf2e.pathfinder-fr.org/spells/'+item['spell-choix'][n]['_id'])"
+                                    >
+                                </span>
+                            </span>
+                            <span *ngIf="!item['spell-choix']" class="trait trait-alt2 editor-edit" style="background-color: #9e9e9e; font-weight: normal;">
+                                -- Choisissez vos sorts depuis l'icône <img style="width: 9px;" src='assets/edit.png'> --
+                            </span>
+
+                            <!-- Subtext-->
+                            <div [innerHTML]="'<br>'+item['description']" style="margin-top: -10px; color: black; font-weight: normal;" *ngIf="item['description'] && item['description'] !=''" class="edit-subtext"></div>
+                        </div>
+                    </div> 
+                </div>
+
+                <!-- Si un don de classe est à choisir -->
+                <div class="feature-1 editor-choice" *ngIf="chara['classe']['translations'] && chara['classe']['classFeatLevels'].indexOf(N) != -1" style="margin-bottom: 20px;"><!-- historique -->
+                    <span class="editor-choice-title">Don de classe </span>
+                    <div (click)="editClassFeats('feat_class-'+N)"  class="trait editor-edit"><img style="width: 9px;" src='assets/edit.png'></div>  
+                    <br><div class="edit-subtext">Niveau {{N}}</div>
+                    <span *ngIf="chara['classe-dons'][N+'']" class="trait trait-alt2 editor-edit">
+                        {{chara['classe-dons'][N+'']['translations']['fr']['name']}} 
+                        <img style="width: 9px;" src='assets/link.png'
+                        (click)="goToLink('https://pf2e.pathfinder-fr.org/feats/'+chara['classe-dons'][N+'']['_id'])"
+                        >
+                    </span>
+                    <span *ngIf="!chara['classe-dons'][N+'']" class="trait trait-alt2 editor-edit" style="background-color: #9e9e9e; font-weight: normal;">
+                        -- Choisissez votre don depuis l'icone <img style="width: 9px;" src='assets/edit.png'> --
+                    </span>
+                </div>
+
+                <!-- Si un don général est à choisir -->
+                <div class="feature-1 editor-choice" *ngIf="chara['classe']['translations'] && chara['classe']['generalFeatLevels'].indexOf(N) != -1" style="margin-bottom: 20px;"><!-- historique -->
+                    <span class="editor-choice-title">Don général </span>
+                    <div (click)="editGeneralFeats('feat_general-'+N)"  class="trait editor-edit"><img style="width: 9px;" src='assets/edit.png'></div>  
+                    <br><div class="edit-subtext">Niveau {{N}}</div>
+                    <span *ngIf="chara['general-dons'][N+'']" class="trait trait-alt2 editor-edit">
+                        {{chara['general-dons'][N+'']['translations']['fr']['name']}} 
+                        <img style="width: 9px;" src='assets/link.png'
+                        (click)="goToLink('https://pf2e.pathfinder-fr.org/feats/'+chara['general-dons'][N+'']['_id'])"
+                        >
+                    </span>
+                    <span *ngIf="!chara['general-dons'][N+'']" class="trait trait-alt2 editor-edit" style="background-color: #9e9e9e; font-weight: normal;">
+                        -- Choisissez votre don depuis l'icone <img style="width: 9px;" src='assets/edit.png'> --
+                    </span>
+                </div>
+
+                <!-- Si un don de compétence est à choisir -->
+                <div class="feature-1 editor-choice" *ngIf="chara['classe']['translations'] && chara['classe']['skillFeatLevels'].indexOf(N) != -1" style="margin-bottom: 20px;"><!-- historique -->
+                    <span class="editor-choice-title">Don de compétence </span>
+                    <div (click)="editCompetenceFeats('feat_competence-'+N)"  class="trait editor-edit"><img style="width: 9px;" src='assets/edit.png'></div>  
+                    <br><div class="edit-subtext">Niveau {{N}}</div>
+                    <span *ngIf="chara['competence-dons'][N+'']" class="trait trait-alt2 editor-edit">
+                        {{chara['competence-dons'][N+'']['translations']['fr']['name']}} 
+                        <img style="width: 9px;" src='assets/link.png'
+                        (click)="goToLink('https://pf2e.pathfinder-fr.org/feats/'+chara['competence-dons'][N+'']['_id'])"
+                        >
+                    </span>
+                    <span *ngIf="!chara['competence-dons'][N+'']" class="trait trait-alt2 editor-edit" style="background-color: #9e9e9e; font-weight: normal;">
+                        -- Choisissez votre don depuis l'icone <img style="width: 9px;" src='assets/edit.png'> --
+                    </span>
+                </div>
+
+                <!-- Si un don d'ascendance est à choisir -->
+                <div class="feature-1 editor-choice" *ngIf="chara['classe']['translations'] && chara['classe']['ancestryFeatLevels'].indexOf(N) != -1 && N != 1" style="margin-bottom: 20px;"><!-- historique -->
+                    <span class="editor-choice-title">Don d'ascendance </span>
+                    <div (click)="editAscFeats('feat_ascendance-'+N)"  class="trait editor-edit"><img style="width: 9px;" src='assets/edit.png'></div>  
+                    <br><div class="edit-subtext">Niveau {{N}}</div>
+                    <span *ngIf="chara['ascendance-dons'][N+'']" class="trait trait-alt2 editor-edit">
+                        {{chara['ascendance-dons'][N+'']['translations']['fr']['name']}} 
+                        <img style="width: 9px;" src='assets/link.png'
+                        (click)="goToLink('https://pf2e.pathfinder-fr.org/feats/'+chara['ascendance-dons'][N+'']['_id'])"
+                        >
+                    </span>
+                    <span *ngIf="!chara['ascendance-dons'][N+'']" class="trait trait-alt2 editor-edit" style="background-color: #9e9e9e; font-weight: normal;">
+                        -- Choisissez votre don depuis l'icone <img style="width: 9px;" src='assets/edit.png'> --
+                    </span>
+                </div>
+
+                <!-- Si une prime d'attribut est à choisir -->
+                <div *ngIf="chara['classe']['translations'] && ['5','10','15','20'].indexOf(N) != -1" class="editor-choice feature-1"><!-- historique -->
+                    <span class="editor-choice-title">Primes d'attributs </span>
+                    <br><div class="edit-subtext" style="color: black; font-weight: normal;">Vous obtenez quatre primes à allouer à différents attributs. Si un modificateur est déjà à +4, il faut deux primes pour l'augmenter (à deux niveaux différents).</div>
+                    <select *ngFor="let n of forN(4)"></select>
+                </div>
+
+                <!-- Si une prime d'attribut est à choisir -->
+                <div *ngIf="chara['classe']['translations'] && chara['classe']['skillIncreaseLevels'].indexOf(N) != -1" class="editor-choice feature-1"><!-- historique -->
+                    <span class="editor-choice-title">Amélioration de compétence </span>
+                    <br><div class="edit-subtext" style="color: black; font-weight: normal;">Améliorez le degré de maitrise d'une compétence (vous pouvez l'utiliser pour gagner la maitrise d'une compétence inexpérimenté). Vous pouvez devenir Maitre dans une compétence à partir du niveau 7 et Légendaire à partir du niveau 15.</div>
+                    <select></select>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION INVENTAIRE -->
+        <div class="editor-section">
+            <div class="editor-section-title"> Inventaire </div>
+            <div class="editor-section-content">
             </div>            
         </div>
     </div>
 
     <div class="character-section character-viewer">
-        <span class=character-name> <b>{{chara["name"]}} </b></span>
-        <div><b>Ascendance:</b> {{chara["ascendance"]["translations"]? chara["ascendance"]["translations"]["fr"]["name"] : ""}} ({{chara["heritage"]? chara["heritage"] : ""}})</div>
-        <div><b>Hiistorique:</b> {{chara["historique"]["translations"]? chara["historique"]["translations"]["fr"]["name"] : ""}}</div>
-        <div><b>PV:</b> {{chara["ascendance"] ? chara["ascendance"]["hp"] + totalStat("Constitution") : ""}}</div>
-        <div><b>Force:</b> {{totalStat("Force")}}</div>
-        <div><b>Dextérité:</b> {{totalStat("Dextérité")}}</div>
-        <div><b>Constitution:</b> {{totalStat("Constitution")}}</div>
-        <div><b>Intelligence:</b> {{totalStat("Intelligence")}}</div>
-        <div><b>Sagesse:</b> {{totalStat("Sagesse")}}</div>
-        <div><b>Charisme:</b> {{totalStat("Charisme")}}</div>
+        <div class="inv-sheet">DEBUG</div>
+
+        <span class="character-name sheet-section-title" > <b>{{chara["name"]}}</b> <b>Niv {{chara["level"]}}</b></span>
+        <div class="sheet-row">
+            <div><b>Ascendance:</b> {{chara["ascendance"]["translations"]? chara["ascendance"]["translations"]["fr"]["name"] : ""}} ({{chara["heritage"]? chara["heritage"] : ""}})</div>
+            <div><b>Classe:</b> {{chara["classe"]["translations"]? chara["classe"]["translations"]["fr"]["name"] : ""}}</div>
+            <div><b>Historique:</b> {{chara["historique"]["translations"]? chara["historique"]["translations"]["fr"]["name"] : ""}}</div>
+            <div><b>PV max:</b> {{chara["ascendance"] && chara["classe"] ?  chara["classe"]["hp"] + chara["ascendance"]["hp"] + totalStat("Constitution") : ""}}</div>
+        </div>
+
+        <span class="sheet-section-title" >Statistiques</span>
+        <div class="sheet-row">
+            <div class="sheet-row-stats-img">
+                <span *ngFor="let item of forJSON(ATTRIBUTS)" class="ability-icon">
+                    <img class="ability-img" src='assets/sheet/ability.png'>
+                    <span class="ability-name">{{ATTRIBUTS[item]}}</span>
+                    <span class="ability-val">{{totalStat(ATTRIBUTS[item])}}</span>
+                    
+                </span>
+                
+            </div>
+        </div>
+
+        <span class="sheet-section-title" >Maitrises</span>
+        <div class="sheet-row sheet-qualif">
+            <div class="sheet-qualif-column">
+                <div><b>Compétences: </b></div>
+                <div *ngFor="let item of forJSON(COMPETENCES)">{{COMPETENCES[item]}}: {{totalSkill(item)}}</div>
+            </div>
+            <div class="sheet-qualif-column">
+                <div><b>Perception: </b>{{totalPerception()}}</div>
+                <br>
+                <div><b>JDS: </b></div>
+                <div *ngFor="let item of forJSON(JDS)">{{JDS[item]}}: {{totalSave(item)}}</div>
+                <br>
+                <div><b>Attaques: </b></div>
+                <div *ngFor="let item of forJSON(ATTAQUES)">{{ATTAQUES[item]}}: {{totalAttack(item)}}</div>
+                <br>
+                <div><b>Defenses: </b></div>
+                <div *ngFor="let item of forJSON(DEFENSES)">{{DEFENSES[item]}}: {{totalDefense(item)}}</div>
+            </div>
+        </div>
+
+        <span class="sheet-section-title" >Aptitudes</span>
+        <div class="sheet-row">
+            TBI
+        </div>
+
+        <span class="sheet-section-title" >Magie</span>
+        <div class="sheet-row">
+            TBI
+        </div>
+
+        <span class="sheet-section-title" >Equipement</span>
+        <div class="sheet-row">
+            TBI
+        </div>
+  
     </div>
 </div>
